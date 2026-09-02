@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ===== SEO : titre et description de CETTE page ===== -->
+<title>Lavage auto à domicile en Alsace | Mobile Car Cleaning</title>
+<meta name="description" content="Lavage et nettoyage automobile à domicile ou sur votre lieu de travail en Alsace. Sans rinçage ou au jet. Strasbourg, Mulhouse, Colmar, Saint-Louis. Sur rendez-vous 7j/7.">
+<meta name="theme-color" content="#06070F">
+<link rel="canonical" href="https://mobilecarcleaning.fr/index.html">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Lavage auto à domicile en Alsace | Mobile Car Cleaning">
+<meta property="og:description" content="Lavage et nettoyage automobile à domicile ou sur votre lieu de travail en Alsace. Sans rinçage ou au jet. Strasbourg, Mulhouse, Colmar, Saint-Louis. Sur rendez-vous 7j/7.">
+<meta property="og:url" content="https://mobilecarcleaning.fr/index.html">
+<meta property="og:image" content="https://mobilecarcleaning.fr/assets/hero.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Tous les styles du site sont dans ce fichier unique -->
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu principal</a>
+
+<!-- ============================================================
+     EN-TÊTE — identique sur toutes les pages.
+     Si vous le modifiez, reportez la modification sur chaque page.
+     ============================================================ -->
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="brand" href="index.html" aria-label="Mobile Car Cleaning, accueil">
+      <img src="assets/logo.png" alt="Mobile Car Cleaning" width="492" height="160">
+    </a>
+
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="services.html">Services</a>
+      <a href="detailing.html">Rénovation</a>
+      <a href="b2b.html">Pros &amp; flottes</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="journal.html">Journal</a>
+      <a href="a-propos.html">À propos</a>
+      <a class="btn btn--primary btn--sm" href="reserver.html">Réservez</a>
+    </nav>
+
+    <a class="btn btn--primary btn--sm header__cta" href="reserver.html">Réservez</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO — la vidéo est dans assets/hero.mp4 (compressée, muette).
+     Pour la changer : remplacez le fichier en gardant le même nom.
+     ============================================================ -->
+<section class="hero">
+  <div class="hero__media">
+    <video autoplay muted loop playsinline poster="assets/hero.jpg" aria-hidden="true">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="wrap hero__inner">
+    <div>
+      <p class="badge"><span class="dot"></span> Alsace — <b>on se déplace 7j/7</b></p>
+      <h1>Le lavage auto qui vient à vous</h1>
+      <p class="lede">Chez vous, au bureau, sur le parking de l'entreprise. Sans eau courante si vous n'en avez pas, au jet si vous préférez.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="reserver.html">Réserver un créneau</a>
+        <a class="btn btn--ghost" href="services.html">Voir les services</a>
+      </div>
+    </div>
+
+    <!-- ===== SÉLECTEUR DE FORMULE : choisir puis réserver ===== -->
+    <aside class="tile">
+      <div class="tile__head">
+        <h2>Choisissez votre formule</h2>
+        <span>Citadine</span>
+      </div>
+
+      <label class="pick" data-label="Extérieur" data-cal="exterieur">
+        <input type="radio" name="formule" value="exterieur">
+        <span class="pick__row">
+          <span class="pick__name">Express extérieur<small class="pick__meta">45 minutes</small></span>
+          <span class="tile-price">39 €</span>
+        </span>
+      </label>
+
+      <label class="pick" data-label="Intérieur" data-cal="interieur">
+        <input type="radio" name="formule" value="interieur">
+        <span class="pick__row">
+          <span class="pick__name">Intérieur<small class="pick__meta">1 heure</small></span>
+          <span class="tile-price">49 €</span>
+        </span>
+      </label>
+
+      <label class="pick" data-label="Complet" data-cal="complet">
+        <input type="radio" name="formule" value="complet" checked>
+        <span class="pick__row">
+          <span class="pick__name">Complet<small class="pick__meta">1 h 45 — le plus choisi</small></span>
+          <span class="tile-price">79 €</span>
+        </span>
+      </label>
+
+      <a class="btn btn--primary btn--full" id="pick-cta" href="reserver.html">Réserver</a>
+      <p class="tile__note">Sans acompte. Annulation libre jusqu'à 24 h avant.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== BANDEAU DÉFILANT (texte dupliqué pour la boucle) ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Lavage à domicile</span><span>Sans rinçage ou au jet</span><span>Sans restriction sécheresse</span><span>Strasbourg · Mulhouse · Colmar</span><span>Sur rendez-vous</span>
+    <span>Lavage à domicile</span><span>Sans rinçage ou au jet</span><span>Sans restriction sécheresse</span><span>Strasbourg · Mulhouse · Colmar</span><span>Sur rendez-vous</span>
+  </div>
+</div>
+
+<!-- ===== DÉCLARATION ===== -->
+<section class="section claim">
+  <div class="wrap">
+    <h2>Pas de station.</h2>
+    <h2>Pas de file d'attente.</h2>
+    <div class="claim__foot">
+      <p>Vous donnez une adresse et un créneau. On arrive avec l'eau, les produits et le matériel. Vous récupérez la voiture propre sans avoir bougé.</p>
+      <p>Le prix est fixé avant l'intervention. Pas de supplément découvert au moment de payer, pas de vente additionnelle sur le pas de la porte.</p>
+    </div>
+    <div class="ph ph--wide ph--band"><span><b>Photo à ajouter</b> — plan large : la voiture en cours de lavage devant chez le client<br><code>assets/intervention-domicile.jpg</code></span></div>
+  </div>
+</section>
+
+<!-- ===== FORMULES ===== -->
+<section class="section section--deep" id="services">
+  <div class="wrap">
+    <div class="head">
+      <h2>Le lavage, à la carte</h2>
+      <p>Tarifs pour une citadine. Berline, break et SUV un cran au-dessus.</p>
+    </div>
+
+    <div class="grid-svc">
+      <article class="svc">
+        <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M3 17v-5l2-5h14l2 5v5"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/></svg></div>
+        <div class="svc__body">
+          <div class="svc__top"><h3>Express extérieur</h3><span class="svc__price">39 €</span></div>
+          <p>L'entretien régulier, en moins d'une heure.</p>
+          <ul><li>Carrosserie lavée et séchée à la microfibre</li><li>Jantes, passages de roue et bas de caisse</li><li>Vitres et rétroviseurs</li></ul>
+          <a class="btn btn--ghost btn--full" href="reserver.html">Réserver</a>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/><path d="M3 20h18"/></svg></div>
+        <div class="svc__body">
+          <div class="svc__top"><h3>Intérieur</h3><span class="svc__price">49 €</span></div>
+          <p>Aspiration en profondeur et surfaces remises à neuf.</p>
+          <ul><li>Aspiration sièges, tapis et coffre</li><li>Plastiques, console et aérateurs</li><li>Vitres intérieures</li></ul>
+          <a class="btn btn--ghost btn--full" href="reserver.html">Réserver</a>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18 12h3M16.3 7.7l2.1-2.1"/><circle cx="12" cy="14" r="5"/></svg></div>
+        <div class="svc__body">
+          <div class="svc__top"><h3>Complet</h3><span class="svc__price">79 €</span></div>
+          <p>L'extérieur et l'intérieur dans le même rendez-vous.</p>
+          <ul><li>Tout l'Express extérieur</li><li>Tout l'Intérieur</li><li>Seuils de porte et montants</li></ul>
+          <a class="btn btn--primary btn--full" href="reserver.html">Réserver</a>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3.3-6.9"/><path d="M21 4v5h-5"/></svg></div>
+        <div class="svc__body">
+          <div class="svc__top"><h3>Abonnement</h3><span class="svc__price">35 €<small>/mois</small></span></div>
+          <p>Un créneau réservé chaque mois, sans y penser.</p>
+          <ul><li>Le rendez-vous est posé à l'avance</li><li>Report possible sur le mois suivant</li><li>Engagement de 3 mois seulement</li></ul>
+          <a class="btn btn--ghost btn--full" href="services.html">En savoir plus</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEUX MÉTHODES : sans rinçage ou au jet ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <h2>Deux méthodes, selon votre situation</h2>
+      <p>On s'adapte à ce dont vous disposez. Vous n'avez rien à préparer : dites-nous simplement à la réservation si un point d'eau et une prise sont accessibles.</p>
+    </div>
+
+    <div class="duo">
+      <article class="method method--lead">
+        <span class="method__tag">Par défaut — partout</span>
+        <h3>Lavage sans rinçage</h3>
+        <p>Notre méthode standard. La saleté est encapsulée dans un lubrifiant puis retirée à la microfibre. Aucun ruissellement, donc utilisable en sous-sol, sur un parking d'entreprise ou en pleine restriction sécheresse.</p>
+        <ul>
+          <li>15 litres d'eau, que nous apportons</li>
+          <li>Aucun raccordement nécessaire</li>
+          <li>Autorisé là où le lavage au jet ne l'est pas</li>
+          <li>Fonctionne aussi en hiver, sel compris</li>
+        </ul>
+        <div class="ph ph--16x9 ph--band"><span><b>Photo à ajouter</b> — le seau, le pulvérisateur et les microfibres pliées<br><code>assets/methode-sans-rincage.jpg</code></span></div>
+      </article>
+
+      <article class="method">
+        <span class="method__tag">Sur demande — si vous êtes équipé</span>
+        <h3>Lavage classique au jet</h3>
+        <p>Si vous disposez d'un robinet extérieur et d'une prise sur un terrain privé, on peut travailler au nettoyeur haute pression : prélavage à la mousse active, rinçage, séchage. Recommandé pour les véhicules très encrassés et les 4×4 sortis des chemins.</p>
+        <ul>
+          <li>Prélavage mousse active et haute pression</li>
+          <li>Idéal après un hiver ou un chantier</li>
+          <li>Nécessite eau + électricité sur place</li>
+          <li>Soumis aux arrêtés sécheresse en vigueur</li>
+        </ul>
+        <div class="ph ph--16x9 ph--band"><span><b>Photo à ajouter</b> — la mousse active sur la carrosserie au nettoyeur haute pression<br><code>assets/methode-jet.jpg</code></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JAUGE D'EAU ===== -->
+<section class="section section--deep">
+  <div class="wrap gauge" id="gauge">
+    <div>
+      <h2>15 litres au lieu de 250</h2>
+      <p class="lede" style="margin-top:1.15rem">C'est l'écart entre notre méthode sans rinçage et un lavage au jet classique. Pas de tuyau, pas de ruissellement, aucun rejet dans les caniveaux.</p>
+    </div>
+    <div class="gauge__bars">
+      <div class="bar bar--them">
+        <div class="bar__label"><span class="bar__name">Station de lavage classique</span><span class="bar__value">250 L</span></div>
+        <div class="bar__track"><div class="bar__fill"></div></div>
+      </div>
+      <div class="bar bar--us">
+        <div class="bar__label"><span class="bar__name">Mobile Car Cleaning</span><span class="bar__value">15 L</span></div>
+        <div class="bar__track"><div class="bar__fill"></div></div>
+      </div>
+      <p class="gauge__note">Chaque été, des arrêtés préfectoraux restreignent le lavage de véhicules dans le Bas-Rhin et le Haut-Rhin. Notre méthode sans rinçage nous permet de continuer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DÉROULÉ EN ONGLETS ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head"><h2>Comment ça se passe</h2></div>
+
+    <div class="tabs" role="tablist" aria-label="Déroulé d'une intervention">
+      <button class="tab" role="tab" aria-selected="true"  aria-controls="p1" id="t1">Vous réservez</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2">On arrive</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3">On lave</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p4" id="t4">Vous validez</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+      <div class="panel__txt">
+        <p class="panel__step">Étape 1 sur 4</p><h3>Vous réservez</h3>
+        <p>Choisissez la formule, le créneau et l'adresse d'intervention. Deux minutes en ligne, sans créer de compte ni verser d'acompte. La confirmation arrive par email dans la foulée.</p>
+      </div>
+      <div class="ph ph--4x3"><span><b>Photo à ajouter</b> — Capture du calendrier sur téléphone, ou un client qui réserve<br><code>assets/reservation.jpg</code></span></div>
+    </div>
+    <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <div class="panel__txt">
+        <p class="panel__step">Étape 2 sur 4</p><h3>On arrive</h3>
+        <p>On se gare à côté du véhicule avec tout le matériel. Il nous faut environ un mètre de dégagement autour de la voiture, et c'est tout. Ni tuyau ni équipement de votre côté, sauf si vous avez choisi le lavage au jet.</p>
+      </div>
+      <div class="ph ph--4x3"><span><b>Photo à ajouter</b> — Le véhicule d'intervention garé devant une maison, coffre ouvert<br><code>assets/arrivee.jpg</code></span></div>
+    </div>
+    <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <div class="panel__txt">
+        <p class="panel__step">Étape 3 sur 4</p><h3>On lave</h3>
+        <p>Une face de microfibre propre par panneau, séchage à la main. Comptez 45 minutes pour un extérieur, 1 h 45 pour un complet. Votre présence n'est pas nécessaire si le véhicule est accessible.</p>
+      </div>
+      <div class="ph ph--4x3"><span><b>Photo à ajouter</b> — Gros plan sur la microfibre en action, ou la mousse sur une aile<br><code>assets/lavage.jpg</code></span></div>
+    </div>
+    <div class="panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+      <div class="panel__txt">
+        <p class="panel__step">Étape 4 sur 4</p><h3>Vous validez</h3>
+        <p>On fait le tour du véhicule ensemble si vous êtes là. Paiement par carte sur place ou en ligne, au tarif annoncé à la réservation. Facture envoyée par email.</p>
+      </div>
+      <div class="ph ph--4x3"><span><b>Photo à ajouter</b> — La voiture propre, portière ouverte, ou le paiement par carte<br><code>assets/finition.jpg</code></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPEL AUX PROS ===== -->
+<section class="section section--deep">
+  <div class="wrap cta">
+    <h2>Vous gérez plusieurs véhicules ?</h2>
+    <p class="lede">Garages, concessions, loueurs, restitutions de leasing et flottes d'entreprise : on se déplace sur votre parc et on facture à la ligne.</p>
+    <div class="cta__actions">
+      <a class="btn btn--primary" href="b2b.html">Voir l'offre professionnelle</a>
+      <a class="btn btn--ghost" href="realisations.html">Voir nos réalisations</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================================================
+     PIED DE PAGE — identique sur toutes les pages
+     ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cols">
+      <div class="footer__brand">
+        <img src="assets/logo.png" alt="Mobile Car Cleaning" width="492" height="160">
+        <p>Lavage et nettoyage automobile mobile en Alsace. Sur rendez-vous, 7 jours sur 7.</p>
+      </div>
+      <div>
+        <h3>Prestations</h3>
+        <ul>
+          <li><a href="services.html">Lavage extérieur</a></li>
+          <li><a href="services.html">Nettoyage intérieur</a></li>
+          <li><a href="services.html">Formule complète</a></li>
+          <li><a href="detailing.html">Rénovation</a></li>
+          <li><a href="b2b.html">Pros &amp; flottes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Le site</h3>
+        <ul>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="reserver.html">Réserver</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Zone</h3>
+        <ul>
+          <li><span>Strasbourg</span></li>
+          <li><span>Mulhouse</span></li>
+          <li><span>Colmar</span></li>
+          <li><span>Saint-Louis</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__legal">
+      <p>© <span id="year">2026</span> Mobile Car Cleaning — Micro-entreprise · SIREN [à compléter]<br>
+         TVA non applicable, article 293 B du CGI</p>
+      <p><a href="mentions-legales.html">Mentions légales</a> &nbsp;·&nbsp;
+         <a href="confidentialite.html">Confidentialité</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

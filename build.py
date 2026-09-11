@@ -12,7 +12,7 @@ SITE     = "https://mobilecarcleaning.fr"
 
 NAV = [
     ("services.html",     "Services"),
-    ("detailing.html",    "Rénovation"),
+    ("detailing.html",    "Detailing"),
     ("b2b.html",          "Pros &amp; flottes"),
     ("realisations.html", "Réalisations"),
     ("journal.html",      "Journal"),
@@ -98,7 +98,7 @@ FOOT = f"""</main>
           <li><a href="services.html">Lavage extérieur</a></li>
           <li><a href="services.html">Nettoyage intérieur</a></li>
           <li><a href="services.html">Formule complète</a></li>
-          <li><a href="detailing.html">Rénovation</a></li>
+          <li><a href="detailing.html">Detailing</a></li>
           <li><a href="b2b.html">Pros &amp; flottes</a></li>
         </ul>
       </div>
@@ -559,7 +559,7 @@ SERVICES = pagehead("Services", "Tous nos services pour les particuliers",
         <div class="svc__body">
           <div class="svc__top"><h3>Restitution de leasing</h3><span class="svc__price">Dès 129 €</span></div>
           <p>Avant la reprise de votre LOA ou LLD. L'état de propreté pèse dans l'expertise de restitution, et les frais de remise en état facturés par le loueur dépassent souvent le coût d'un nettoyage.</p>
-          <ul><li>Complet + rénovation intérieure ciblée</li><li>Traitement des taches et des odeurs</li><li>Rénovation des phares en option</li></ul>
+          <ul><li>Complet + detailing intérieur ciblé</li><li>Traitement des taches et des odeurs</li><li>Rénovation des phares en option</li></ul>
           <a class="btn btn--ghost btn--full" href="detailing.html">En savoir plus</a>
         </div>
       </article>
@@ -618,9 +618,9 @@ write("services.html", SERVICES,
       "Lavage extérieur, nettoyage intérieur, formule complète, restitution de leasing et abonnement. À domicile en Alsace, sans rinçage ou au jet.")
 
 # ============================================================
-#  PAGE RÉNOVATION (detailing)
+#  PAGE DETAILING
 # ============================================================
-DETAILING = pagehead("Rénovation", "Rénovation et remise en état",
+DETAILING = pagehead("Detailing", "Detailing et remise en état",
   "Quand le lavage ne suffit plus : intérieurs très marqués, peinture terne, optiques jaunies, et préparation avant restitution de leasing.", bg="header-renovation.jpg") + """
 
 <section class="section">
@@ -634,7 +634,7 @@ DETAILING = pagehead("Rénovation", "Rénovation et remise en état",
       <article class="svc">
         <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21v-7l6-9 6 9v7"/><path d="M9 21v-4h6v4"/></svg></div>
         <div class="svc__body">
-          <div class="svc__top"><h3>Rénovation intérieure</h3><span class="svc__price">149 €</span></div>
+          <div class="svc__top"><h3>Detailing intérieur</h3><span class="svc__price">149 €</span></div>
           <p>3 heures. Sièges et moquettes traités à l'injection-extraction, pour les taches installées et les intérieurs très marqués.</p>
           <ul><li>Injection-extraction sièges et moquettes</li><li>Traitement des taches localisées</li><li>Poils d'animaux sur demande</li><li>Séchage avant restitution du véhicule</li></ul>
           <a class="btn btn--ghost btn--full" href="reserver.html">Réserver</a>
@@ -708,7 +708,7 @@ DETAILING = pagehead("Rénovation", "Rénovation et remise en état",
         <thead><tr><th scope="col">Prestation</th><th scope="col">Détail</th><th scope="col">Tarif</th></tr></thead>
         <tbody>
           <tr><td>Complet</td><td class="hide-sm">Extérieur + intérieur</td><td>89 €</td></tr>
-          <tr><td>Rénovation intérieure</td><td class="hide-sm">Sièges et moquettes</td><td>169 €</td></tr>
+          <tr><td>Detailing intérieur</td><td class="hide-sm">Sièges et moquettes</td><td>169 €</td></tr>
           <tr><td>Phares</td><td class="hide-sm">La paire</td><td>59 €</td></tr>
           <tr><td>Remise forfait</td><td class="hide-sm">Prestations groupées</td><td>−129 €</td></tr>
         </tbody>
@@ -746,8 +746,8 @@ DETAILING = pagehead("Rénovation", "Rénovation et remise en état",
 """
 
 write("detailing.html", DETAILING,
-      "Rénovation intérieure, polissage et restitution de leasing | Mobile Car Cleaning",
-      "Rénovation intérieure à l'injection-extraction, polissage une passe, rénovation des phares et préparation avant restitution de LOA ou LLD, à domicile en Alsace.")
+      "Detailing intérieur, polissage et restitution de leasing | Mobile Car Cleaning",
+      "Detailing intérieur à l'injection-extraction, polissage une passe, rénovation des phares et préparation avant restitution de LOA ou LLD, à domicile en Alsace.")
 
 # ============================================================
 #  PAGE PROS ET FLOTTES (B2B)
@@ -849,7 +849,7 @@ B2B = pagehead("Pros &amp; flottes", "Garages, concessions et flottes",
           <tr><td>FT-193-BD</td><td class="hide-sm">Peugeot 308</td><td>Préparation VO</td><td><span class="pill pill--ok">Livré</span></td></tr>
           <tr><td>GH-660-XR</td><td class="hide-sm">Dacia Duster</td><td>Complet + phares</td><td><span class="pill pill--ok">Livré</span></td></tr>
           <tr><td>CD-207-MN</td><td class="hide-sm">Ford Transit</td><td>Retour de leasing</td><td><span class="pill pill--ok">Livré</span></td></tr>
-          <tr><td>BJ-914-QS</td><td class="hide-sm">VW Golf</td><td>Rénovation intérieure</td><td><span class="pill pill--wait">Jeudi</span></td></tr>
+          <tr><td>BJ-914-QS</td><td class="hide-sm">VW Golf</td><td>Detailing intérieur</td><td><span class="pill pill--wait">Jeudi</span></td></tr>
         </tbody>
       </table>
       <p class="sheet__foot">Exemple illustratif. Votre récapitulatif reprend vos véhicules et vos tarifs négociés.</p>
@@ -913,14 +913,14 @@ def work(cat, catlabel, titre, desc, meta, photo=None):
 WORKS = (
   work("interieur","Intérieur","Break familial, sièges tissu",
        "Trois ans de trajets école et de miettes de goûter. Injection-extraction sur les cinq places et la moquette de coffre.",
-       "Rénovation intérieure · 3 h · Strasbourg") +
+       "Detailing intérieur · 3 h · Strasbourg") +
   work("exterieur","Extérieur","Citadine, entretien mensuel",
        "Cliente en abonnement Confort. Lavage sans rinçage sur le parking de son immeuble, sans point d'eau.",
        "Formule complète · 1 h 45 · Schiltigheim") +
-  work("renovation","Rénovation","Berline allemande, peinture noire",
+  work("detailing","Detailing","Berline allemande, peinture noire",
        "Voile terne et micro-rayures visibles au soleil. Décontamination puis polissage une passe, protection appliquée à la main.",
        "Éclat & brillance · 6 h · Colmar") +
-  work("renovation","Rénovation","Monospace, optiques opacifiées",
+  work("renovation","Detailing","Monospace, optiques opacifiées",
        "Phares jaunis d'un véhicule de onze ans. Ponçage progressif puis vernis anti-UV sur la paire.",
        "Rénovation phares · 30 min · Mulhouse") +
   work("pro","Professionnel","Retour de leasing, utilitaire",
@@ -942,7 +942,7 @@ REAL = pagehead("Réalisations", "Nos réalisations",
       <button class="tab" role="tab" aria-selected="true"  data-filter="tout">Tout</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="exterieur">Extérieur</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="interieur">Intérieur</button>
-      <button class="tab" role="tab" aria-selected="false" data-filter="renovation">Rénovation</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="detailing">Detailing</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="pro">Professionnel</button>
     </div>
 
@@ -968,7 +968,7 @@ REAL = pagehead("Réalisations", "Nos réalisations",
 
 write("realisations.html", REAL,
       "Nos réalisations | Mobile Car Cleaning Alsace",
-      "Exemples d'interventions récentes : rénovation intérieure, polissage, rénovation de phares, préparation VO et retour de leasing en Alsace.")
+      "Exemples d'interventions récentes : detailing intérieur, polissage, rénovation de phares, préparation VO et retour de leasing en Alsace.")
 
 
 # ============================================================
@@ -1228,7 +1228,7 @@ RESERVER = pagehead("Réserver", "Réservez votre créneau",
     <div class="head"><h2>Avant de réserver</h2></div>
     <div class="faq">
       <details open><summary>Quelle formule choisir ?</summary>
-        <p>Express extérieur pour un entretien régulier, Intérieur si c'est l'habitacle qui pose problème, Complet dans le doute — c'est la formule la plus demandée. Pour un intérieur très marqué ou une restitution de leasing, passez plutôt par la page Rénovation.</p></details>
+        <p>Express extérieur pour un entretien régulier, Intérieur si c'est l'habitacle qui pose problème, Complet dans le doute — c'est la formule la plus demandée. Pour un intérieur très marqué ou une restitution de leasing, passez plutôt par la page Detailing.</p></details>
       <details><summary>Que dois-je préparer ?</summary>
         <p>Rien. Laissez simplement environ un mètre de dégagement autour du véhicule. Si vous avez un robinet extérieur et une prise sur terrain privé, signalez-le dans le champ commentaire : on pourra travailler au nettoyeur haute pression.</p></details>
       <details><summary>Et si je dois annuler ?</summary>

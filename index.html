@@ -83,39 +83,47 @@
     </div>
 
     <!-- ===== SÉLECTEUR DE FORMULE : choisir puis réserver ===== -->
-    <aside class="tile">
-      <div class="tile__head">
-        <h2>Choisissez votre formule</h2>
-        <span>Citadine</span>
-      </div>
+<aside class="tile">
+  <div class="tile__head">
+    <h2>Choisissez votre formule</h2>
+  </div>
 
-      <label class="pick" data-label="Extérieur" data-cal="exterieur">
-        <input type="radio" name="formule" value="exterieur">
-        <span class="pick__row">
-          <span class="pick__name">Express extérieur<small class="pick__meta">45 minutes</small></span>
-          <span class="tile-price">39 €</span>
-        </span>
-      </label>
+  <div class="vtype" role="group" aria-label="Type de véhicule">
+    <button type="button" class="vtype__btn" data-vtype="citadine" aria-pressed="true">Citadine</button>
+    <button type="button" class="vtype__btn" data-vtype="berline" aria-pressed="false">Berline</button>
+    <button type="button" class="vtype__btn" data-vtype="suv" aria-pressed="false">SUV</button>
+  </div>
 
-      <label class="pick" data-label="Intérieur" data-cal="interieur">
-        <input type="radio" name="formule" value="interieur">
-        <span class="pick__row">
-          <span class="pick__name">Intérieur<small class="pick__meta">1 heure</small></span>
-          <span class="tile-price">49 €</span>
-        </span>
-      </label>
+  <label class="pick" data-label="Extérieur" data-cal="exterieur"
+         data-p-citadine="39" data-p-berline="45" data-p-suv="55">
+    <input type="radio" name="formule" value="exterieur">
+    <span class="pick__row">
+      <span class="pick__name">Express extérieur<small class="pick__meta">45 minutes</small></span>
+      <span class="tile-price">39 €</span>
+    </span>
+  </label>
 
-      <label class="pick" data-label="Complet" data-cal="complet">
-        <input type="radio" name="formule" value="complet" checked>
-        <span class="pick__row">
-          <span class="pick__name">Complet<small class="pick__meta">1 h 45 — le plus choisi</small></span>
-          <span class="tile-price">79 €</span>
-        </span>
-      </label>
+  <label class="pick" data-label="Intérieur" data-cal="interieur"
+         data-p-citadine="49" data-p-berline="59" data-p-suv="69">
+    <input type="radio" name="formule" value="interieur">
+    <span class="pick__row">
+      <span class="pick__name">Intérieur<small class="pick__meta">1 heure</small></span>
+      <span class="tile-price">49 €</span>
+    </span>
+  </label>
 
-      <a class="btn btn--primary btn--full" id="pick-cta" href="reserver.html">Réserver</a>
-      <p class="tile__note">Sans acompte. Annulation libre jusqu'à 24 h avant.</p>
-    </aside>
+  <label class="pick" data-label="Complet" data-cal="complet"
+         data-p-citadine="79" data-p-berline="89" data-p-suv="105">
+    <input type="radio" name="formule" value="complet" checked>
+    <span class="pick__row">
+      <span class="pick__name">Complet<small class="pick__meta">1 h 45 — le plus choisi</small></span>
+      <span class="tile-price">79 €</span>
+    </span>
+  </label>
+
+  <a class="btn btn--primary btn--full" id="pick-cta" href="reserver.html">Réserver</a>
+  <p class="tile__note">Sans acompte. Annulation libre jusqu'à 24 h avant.</p>
+</aside>
   </div>
 </section>
 

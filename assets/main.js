@@ -68,7 +68,18 @@
 (function(){
   var picks = [].slice.call(document.querySelectorAll('.pick'));
   var cta = document.getElementById('pick-cta');
+  var vtypeBtns = [].slice.call(document.querySelectorAll('.vtype__btn'));
   if(!picks.length) return;
+
+  var currentVtype = 'citadine';
+
+  function updatePrices(){
+    picks.forEach(function(p){
+      var price = p.getAttribute('data-p-' + currentVtype);
+      var out = p.querySelector('.tile-price');
+      if(price && out) out.textContent = price + ' €';
+    });
+  }
 
   function sync(){
     picks.forEach(function(p){
@@ -77,18 +88,30 @@
       p.setAttribute('data-checked', String(!!on));
       if(on && cta){
         cta.textContent = 'Réserver — ' + (p.getAttribute('data-label') || 'ce forfait');
-        // Mémorise la formule choisie pour la page de réservation
-        try { sessionStorage.setItem('mcc-formule', p.getAttribute('data-cal') || ''); } catch(e){}
+        try {
+          sessionStorage.setItem('mcc-formule', p.getAttribute('data-cal') || '');
+          sessionStorage.setItem('mcc-vtype', currentVtype);
+        } catch(e){}
       }
     });
   }
+
   picks.forEach(function(p){
     var input = p.querySelector('input');
     if(input) input.addEventListener('change', sync);
   });
+
+  vtypeBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      currentVtype = b.getAttribute('data-vtype');
+      vtypeBtns.forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      updatePrices();
+    });
+  });
+
+  updatePrices();
   sync();
 })();
-
 /* ============================================================
    FILTRES DE LA PAGE RÉALISATIONS
    Les boutons portent data-filter, les cartes data-cat.

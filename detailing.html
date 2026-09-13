@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -73,18 +74,23 @@
 </section>
 
 
-<section class="section">
+<section class="section" id="prestations">
   <div class="wrap">
     <div class="head">
       <h2>Ce qu'on sait faire, et ce qu'on ne fait pas</h2>
       <p>Trois interventions maîtrisées, réalisées chez vous. Nous ne posons ni céramique longue durée ni film de protection : ces traitements exigent un atelier fermé, à température et hygrométrie contrôlées.</p>
+      <div class="vtype vtype--inline" role="group" aria-label="Type de véhicule" data-scope="#prestations">
+        <button type="button" class="vtype__btn" data-vtype="citadine" aria-pressed="true">Citadine</button>
+        <button type="button" class="vtype__btn" data-vtype="berline" aria-pressed="false">Berline</button>
+        <button type="button" class="vtype__btn" data-vtype="suv" aria-pressed="false">SUV / Utilitaire</button>
+      </div>
     </div>
 
     <div class="grid-svc">
       <article class="svc">
         <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21v-7l6-9 6 9v7"/><path d="M9 21v-4h6v4"/></svg></div>
         <div class="svc__body">
-          <div class="svc__top"><h3>Detailing intérieure</h3><span class="svc__price">149 €</span></div>
+          <div class="svc__top"><h3>Detailing intérieure</h3><span class="svc__price" data-p-citadine="149" data-p-berline="169" data-p-suv="189">149 €</span></div>
           <p>3 heures. Sièges et moquettes traités à l'injection-extraction, pour les taches installées et les intérieurs très marqués.</p>
           <ul><li>Injection-extraction sièges et moquettes</li><li>Traitement des taches localisées</li><li>Poils d'animaux sur demande</li><li>Séchage avant restitution du véhicule</li></ul>
           <a class="btn btn--ghost btn--full" href="reserver.html">Réserver</a>
@@ -94,7 +100,7 @@
       <article class="svc">
         <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16"/><path d="M9.5 9.5l5 5"/></svg></div>
         <div class="svc__body">
-          <div class="svc__top"><h3>Éclat &amp; brillance</h3><span class="svc__price">279 €</span></div>
+          <div class="svc__top"><h3>Éclat &amp; brillance</h3><span class="svc__price" data-p-citadine="279" data-p-berline="309" data-p-suv="349">279 €</span></div>
           <p>5 à 6 heures. Décontamination puis polissage une passe, pour retirer le voile terne et raviver la profondeur de la couleur.</p>
           <ul><li>Lavage complet préalable</li><li>Décontamination fer et goudron</li><li>Polissage une passe à la machine</li><li>Protection longue durée appliquée</li></ul>
           <a class="btn btn--ghost btn--full" href="#devis">Demander un devis</a>
@@ -161,7 +167,7 @@
       <p>Si vous cherchez spécifiquement une céramique certifiée ou un film de protection, dites-le-nous : nous vous orienterons vers un atelier sérieux de la région plutôt que de vous vendre autre chose.</p>
       </div>
     </div>
-<div class="ph ph--4x3"><img src="assets/protection-application.jpg" alt="ceramic coating"></div>
+<div class="ph ph--4x3"><img src="assets/protection-application.jpg" alt="Application de la protection longue durée à la main"></div>
   </div>
 </section>
 

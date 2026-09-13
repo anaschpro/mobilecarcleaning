@@ -137,3 +137,26 @@
   var y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 })();
+
+/* --- Prix par type de véhicule, pour les grilles de cartes --- */
+(function(){
+  var groups = [].slice.call(document.querySelectorAll('.vtype[data-scope]'));
+  groups.forEach(function(group){
+    var scope = document.querySelector(group.getAttribute('data-scope'));
+    if(!scope) return;
+    var btns = [].slice.call(group.querySelectorAll('.vtype__btn'));
+    var priceEls = [].slice.call(scope.querySelectorAll('[data-p-citadine]'));
+    function apply(vtype){
+      priceEls.forEach(function(el){
+        var v = el.getAttribute('data-p-' + vtype);
+        if(v) el.textContent = v + ' €';
+      });
+      btns.forEach(function(b){
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-vtype') === vtype));
+      });
+    }
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){ apply(b.getAttribute('data-vtype')); });
+    });
+  });
+})();

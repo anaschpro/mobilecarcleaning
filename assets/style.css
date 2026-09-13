@@ -154,6 +154,16 @@ p:last-child{margin-bottom:0}
   transition:background-color .16s,color .16s,border-color .16s}
 .vtype__btn:hover{color:var(--paper)}
 .vtype__btn[aria-pressed="true"]{background:var(--brand-lit);border-color:var(--brand-lit);color:#fff;font-weight:600}
+
+/* Badge avis Google, dans le hero */
+.badge--rating{cursor:pointer;text-decoration:none;transition:border-color .16s,background-color .16s}
+.badge--rating:hover{border-color:var(--paper);background:rgba(255,255,255,.1)}
+.badge--rating .stars{color:#FBBF24;letter-spacing:-1px;font-size:.85em}
+
+/* Bandeau marques (variante plus sobre que le bandeau principal) */
+.marquee--brands{background:var(--deep);border-block-color:var(--line)}
+.marquee--brands span{color:var(--muted);font-weight:600;letter-spacing:.16em}
+.marquee--brands span::after{color:rgba(255,255,255,.25)}
 .vtype--inline{margin-top:1.25rem;max-width:360px}
 .options{margin-top:2.5rem}
 .options h3{font-size:1.05rem;margin-bottom:1rem;color:var(--paper)}

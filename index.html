@@ -148,11 +148,14 @@
 
 <!-- ===== FORMULES ===== -->
 <section class="section section--deep" id="services">
-  <div class="wrap">
-    <div class="head">
-      <h2>Le lavage, à la carte</h2>
-      <p>Tarifs pour une citadine. Berline, break et SUV un cran au-dessus.</p>
-    </div>
+<div class="head">
+  <h2>Le lavage, à la carte</h2>
+  <div class="vtype vtype--inline" role="group" aria-label="Type de véhicule" data-scope="#services">
+    <button type="button" class="vtype__btn" data-vtype="citadine" aria-pressed="true">Citadine</button>
+    <button type="button" class="vtype__btn" data-vtype="berline" aria-pressed="false">Berline</button>
+    <button type="button" class="vtype__btn" data-vtype="suv" aria-pressed="false">SUV / Utilitaire</button>
+  </div>
+</div>
 
     <div class="grid-svc">
       <article class="svc">

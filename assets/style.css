@@ -154,6 +154,10 @@ p:last-child{margin-bottom:0}
   transition:background-color .16s,color .16s,border-color .16s}
 .vtype__btn:hover{color:var(--paper)}
 .vtype__btn[aria-pressed="true"]{background:var(--brand-lit);border-color:var(--brand-lit);color:#fff;font-weight:600}
+.vtype--inline{margin-top:1.25rem;max-width:360px}
+.options{margin-top:2.5rem}
+.options h3{font-size:1.05rem;margin-bottom:1rem;color:var(--paper)}
+.options__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin-bottom:1.5rem}
 .pick{display:block;cursor:pointer;border:1px solid transparent;border-radius:var(--r-sm);
   padding:.8rem .9rem;margin-bottom:.4rem;transition:background-color .16s,border-color .16s}
 .pick:hover{background:rgba(255,255,255,.05)}

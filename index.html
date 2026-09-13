@@ -97,19 +97,28 @@
   <label class="pick" data-label="Extérieur" data-cal="exterieur"
          data-p-citadine="39" data-p-berline="45" data-p-suv="55">
     <input type="radio" name="formule" value="exterieur">
-<span class="svc__price" data-p-citadine="39" data-p-berline="45" data-p-suv="55">39 €</span>
+    <span class="pick__row">
+      <span class="pick__name">Express extérieur<small class="pick__meta">45 minutes</small></span>
+      <span class="tile-price">39 €</span>
+    </span>
   </label>
 
   <label class="pick" data-label="Intérieur" data-cal="interieur"
          data-p-citadine="49" data-p-berline="59" data-p-suv="69">
     <input type="radio" name="formule" value="interieur">
-<span class="svc__price" data-p-citadine="49" data-p-berline="59" data-p-suv="69">49 €</span>
+    <span class="pick__row">
+      <span class="pick__name">Intérieur<small class="pick__meta">1 heure</small></span>
+      <span class="tile-price">49 €</span>
+    </span>
   </label>
 
   <label class="pick" data-label="Complet" data-cal="complet"
          data-p-citadine="79" data-p-berline="89" data-p-suv="105">
     <input type="radio" name="formule" value="complet" checked>
-<span class="svc__price" data-p-citadine="79" data-p-berline="89" data-p-suv="105">79 €</span>
+    <span class="pick__row">
+      <span class="pick__name">Complet<small class="pick__meta">1 h 45 — le plus choisi</small></span>
+      <span class="tile-price">79 €</span>
+    </span>
   </label>
 
   <a class="btn btn--primary btn--full" id="pick-cta" href="reserver.html">Réserver</a>
@@ -139,14 +148,11 @@
 
 <!-- ===== FORMULES ===== -->
 <section class="section section--deep" id="services">
-<div class="head">
-  <h2>Le lavage, à la carte</h2>
-  <div class="vtype vtype--inline" role="group" aria-label="Type de véhicule" data-scope="#services">
-    <button type="button" class="vtype__btn" data-vtype="citadine" aria-pressed="true">Citadine</button>
-    <button type="button" class="vtype__btn" data-vtype="berline" aria-pressed="false">Berline</button>
-    <button type="button" class="vtype__btn" data-vtype="suv" aria-pressed="false">SUV / Utilitaire</button>
-  </div>
-</div>
+  <div class="wrap">
+    <div class="head">
+      <h2>Le lavage, à la carte</h2>
+      <p>Tarifs pour une citadine. Berline, break et SUV un cran au-dessus.</p>
+    </div>
 
     <div class="grid-svc">
       <article class="svc">
@@ -162,7 +168,7 @@
       <article class="svc">
         <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/><path d="M3 20h18"/></svg></div>
         <div class="svc__body">
-          <div class="svc__top"><h3>Intérieur</h3><="svc__price">49 €</span></div>
+          <div class="svc__top"><h3>Intérieur</h3><span class="svc__price">49 €</span></div>
           <p>Aspiration en profondeur et surfaces remises à neuf.</p>
           <ul><li>Aspiration sièges, tapis et coffre</li><li>Plastiques, console et aérateurs</li><li>Vitres intérieures</li></ul>
           <a class="btn btn--ghost btn--full" href="reserver.html">Réserver</a>
@@ -172,7 +178,7 @@
       <article class="svc">
         <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18 12h3M16.3 7.7l2.1-2.1"/><circle cx="12" cy="14" r="5"/></svg></div>
         <div class="svc__body">
-          <div class="svc__top"><h3>Complet</h3><="svc__price">79 €</span></div>
+          <div class="svc__top"><h3>Complet</h3><span class="svc__price">79 €</span></div>
           <p>L'extérieur et l'intérieur dans le même rendez-vous.</p>
           <ul><li>Tout l'Express extérieur</li><li>Tout l'Intérieur</li><li>Seuils de porte et montants</li></ul>
           <a class="btn btn--primary btn--full" href="reserver.html">Réserver</a>
@@ -182,7 +188,7 @@
       <article class="svc">
         <div class="svc__art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3.3-6.9"/><path d="M21 4v5h-5"/></svg></div>
         <div class="svc__body">
-          <div class="svc__top"><h3>Abonnement</h3><="svc__price">35 €<small>/mois</small></span></div>
+          <div class="svc__top"><h3>Abonnement</h3><span class="svc__price">35 €<small>/mois</small></span></div>
           <p>Un créneau réservé chaque mois, sans y penser.</p>
           <ul><li>Le rendez-vous est posé à l'avance</li><li>Report possible sur le mois suivant</li><li>Engagement de 3 mois seulement</li></ul>
           <a class="btn btn--ghost btn--full" href="services.html">En savoir plus</a>
@@ -202,7 +208,7 @@
 
     <div class="duo">
       <article class="method method--lead">
-        <="method__tag">Par défaut — partout</span>
+        <span class="method__tag">Par défaut — partout</span>
         <h3>Lavage sans rinçage</h3>
         <p>Notre méthode standard. La saleté est encapsulée dans un lubrifiant puis retirée à la microfibre. Aucun ruissellement, donc utilisable en sous-sol, sur un parking d'entreprise ou en pleine restriction sécheresse.</p>
         <ul>

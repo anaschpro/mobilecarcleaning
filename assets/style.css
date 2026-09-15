@@ -473,6 +473,10 @@ p:last-child{margin-bottom:0}
    le fond dégradé et la marge intérieure disparaissent tout seuls —
    il suffit donc de remplacer le <span>...</span>, rien d'autre à toucher. */
 .ph:has(img){border-style:solid;border-color:transparent;background:none;padding:0}
+/* Vignette journal : si le bandeau source n'est pas encore depose, on revient
+   a l'apparence "cadre en pointilles" plutot que d'afficher une image cassee. */
+.ph--empty{border-style:dashed;border-color:var(--line-strong);background:var(--deep);padding:0}
+.ph--empty img{display:none}
 .ph span{color:var(--muted);font-size:.8rem;line-height:1.55;max-width:32ch}
 .ph b{display:block;color:var(--paper);font-weight:600;font-size:.85rem;margin-bottom:.4rem}
 .ph code{font-size:.78rem;color:var(--water);word-break:break-all}

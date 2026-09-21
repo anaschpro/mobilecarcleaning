@@ -1,4 +1,3 @@
-
 /* ============================================================
    MOBILE CAR CLEANING — script commun à toutes les pages.
    Chaque bloc se désactive tout seul si l'élément est absent,
@@ -63,8 +62,8 @@
 /* ============================================================
    SÉLECTEUR DE FORMULE DU HERO
    Chaque <label class="pick"> contient un bouton radio et un
-   attribut data-cal indiquant l'événement Cal.com à ouvrir.
-   Le bouton "Réserver" prend la valeur sélectionnée.
+   attribut data-cal indiquant le service Setmore à ouvrir.
+   Le bouton "Réserver" emporte cette valeur dans son adresse.
    ============================================================ */
 (function(){
   var picks = [].slice.call(document.querySelectorAll('.pick'));

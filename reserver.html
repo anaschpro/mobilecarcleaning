@@ -181,10 +181,21 @@
 
 Cal("init", "lavage", { origin: "https://cal.com" });
 
+/* Forfait choisi sur la page d'accueil, transmis dans l'URL
+   (reserver.html?f=lavage-complet) : on ouvre directement le bon créneau.
+   Sans paramètre — arrivée par le menu — on affiche toutes les formules. */
+var MCC_FORMULES = ["express-exterieur", "lavage-interieur",
+                    "lavage-complet", "lavage-complet-protection"];
+var mccChoix = "";
+try { mccChoix = new URLSearchParams(location.search).get("f") || ""; } catch (e) {}
+var mccCalLink = MCC_FORMULES.indexOf(mccChoix) > -1
+  ? "mobilecarcleaningeu/" + mccChoix
+  : "mobilecarcleaningeu";
+
 Cal.ns["lavage"]("inline", {
   elementOrSelector: "#my-cal-inline",
   config: { "layout": "month_view", "theme": "light" },
-  calLink: "mobilecarcleaningeu"   /* votre page Cal.com : toutes vos formules y sont listées */
+  calLink: mccCalLink   /* votre page Cal.com : toutes vos formules y sont listées */
 });
 
 Cal.ns["lavage"]("ui", { "hideEventTypeDetails": false, "layout": "month_view" });

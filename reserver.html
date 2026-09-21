@@ -273,44 +273,85 @@
     "devis":               "30ef739d-a2ef-47b8-8ab5-bc9adf8b55fb"
   };
 
-  /* Forfait choisi sur la page d'accueil, transmis dans l'adresse
-     (reserver.html?f=complet) : on ouvre directement ce service.
-     Sans paramètre — arrivée par le menu — on affiche la page
-     complète, avec toutes les formules. */
+  /* Réglages d'affichage de l'indicateur de chargement.
+     Setmore est une application JavaScript : son événement "load"
+     se déclenche bien AVANT que le calendrier soit dessiné à
+     l'écran. Impossible de savoir depuis notre page quand il est
+     réellement prêt (sécurité navigateur : on ne peut pas lire
+     l'intérieur d'un cadre hébergé sur un autre domaine). On garde
+     donc l'indicateur un moment après le "load". Si l'attente vous
+     paraît mal calibrée, ce sont les deux nombres ci-dessous. */
+  var APRES_CHARGEMENT = 1800;  /* millisecondes gardées après le "load" */
+  var SECURITE         = 15000; /* filet : on n'attend jamais au-delà */
+
   var choix = "";
   try { choix = new URLSearchParams(location.search).get("f") || ""; } catch (e) {}
-
   if (!Object.prototype.hasOwnProperty.call(MCC_SERVICES, choix)) choix = "complet";
 
-  /* Le calendrier : une seule iframe, dont on change l'adresse
-     quand le visiteur sélectionne une autre formule. */
-  var cadre = document.createElement("iframe");
-  cadre.id = "mcc-booking-frame";
-  cadre.title = "Calendrier de réservation Mobile Car Cleaning";
-  cadre.setAttribute("scrolling", "yes");
-  cadre.setAttribute("frameborder", "0");
-  cadre.setAttribute("allow", "web-share");
-
   var emplacement = document.getElementById("mcc-booking");
-  if (emplacement) emplacement.appendChild(cadre);
+  var chargement  = document.getElementById("mcc-loading");
+  var cartes      = [].slice.call(document.querySelectorAll(".formules .pick"));
+  if (!emplacement) return;
 
-  var chargement = document.getElementById("mcc-loading");
-  /* Setmore est une application lourde à démarrer : on l'affiche
-     dès le clic (le client sait que ça travaille, pas que c'est
-     cassé) et on la masque quand l'iframe a fini de se charger. */
-  if (chargement) {
-    cadre.style.opacity = "0";
-    cadre.addEventListener("load", function () {
-      chargement.setAttribute("data-visible", "false");
-      cadre.style.opacity = "1";
-    });
+  /* Un calendrier déjà chargé est conservé et simplement masqué :
+     revenir sur une formule déjà consultée est alors instantané,
+     au lieu de relancer Setmore depuis zéro à chaque clic. */
+  var cadres = {};
+  var minuteries = [];
+
+  function stopMinuteries() {
+    minuteries.forEach(clearTimeout);
+    minuteries = [];
   }
 
-  var cartes = [].slice.call(document.querySelectorAll(".formules .pick"));
+  function masquerIndicateur() {
+    stopMinuteries();
+    if (chargement) chargement.setAttribute("data-visible", "false");
+  }
+
+  function montrerIndicateur() {
+    stopMinuteries();
+    if (chargement) chargement.setAttribute("data-visible", "true");
+    minuteries.push(setTimeout(masquerIndicateur, SECURITE));
+  }
+
+  function creerCadre(service) {
+    var f = document.createElement("iframe");
+    f.className = "mcc-booking-frame";
+    f.title = "Calendrier de réservation — " + service;
+    f.setAttribute("scrolling", "yes");
+    f.setAttribute("frameborder", "0");
+    f.setAttribute("allow", "web-share");
+    f.setAttribute("data-pret", "false");
+
+    f.addEventListener("load", function () {
+      /* On laisse à Setmore le temps de dessiner son calendrier
+         avant de retirer l'indicateur. */
+      stopMinuteries();
+      minuteries.push(setTimeout(function () {
+        f.setAttribute("data-pret", "true");
+        if (f.getAttribute("data-actif") === "true") masquerIndicateur();
+      }, APRES_CHARGEMENT));
+    });
+
+    f.src = BASE + "/services/" + MCC_SERVICES[service];
+    emplacement.appendChild(f);
+    cadres[service] = f;
+    return f;
+  }
 
   function afficher(service) {
-    if (chargement) chargement.setAttribute("data-visible", "true");
-    cadre.src = BASE + "/services/" + MCC_SERVICES[service];
+    var nouveau = cadres[service];
+    var dejaPret = !!nouveau && nouveau.getAttribute("data-pret") === "true";
+
+    if (!nouveau) nouveau = creerCadre(service);
+
+    Object.keys(cadres).forEach(function (k) {
+      cadres[k].setAttribute("data-actif", String(k === service));
+    });
+
+    /* Calendrier déjà chargé : affichage immédiat, aucun indicateur. */
+    if (dejaPret) masquerIndicateur(); else montrerIndicateur();
 
     cartes.forEach(function (c) {
       var actif = c.getAttribute("data-service") === service;
@@ -323,7 +364,6 @@
     try {
       history.replaceState(null, "", "reserver.html?f=" + service);
     } catch (e) {}
-
   }
 
   cartes.forEach(function (c) {
@@ -335,7 +375,6 @@
     }
   });
 
-  if (chargement) chargement.setAttribute("data-visible", "true");
   afficher(choix);
 })();
 </script>

@@ -365,7 +365,21 @@ p:last-child{margin-bottom:0}
 .formules .pick:focus-within{outline:3px solid var(--water);outline-offset:3px}
 .formules .tile-price{font-size:1.2rem}
 .formules__note{color:var(--muted);font-size:.85rem;max-width:66ch}
-#mcc-booking{width:100%}
+#mcc-booking{width:100%;position:relative}
+#mcc-booking-frame{transition:opacity .2s ease}
+
+/* Indicateur affiche pendant que Setmore demarre (premier chargement
+   ou changement de formule) : superpose au cadre plutot que de
+   pousser le contenu, pour eviter tout saut de mise en page. */
+.booking__loading{position:absolute;inset:0;display:none;
+  align-items:center;justify-content:center;gap:.7rem;
+  background:#fff;color:#333;font-size:.95rem}
+.booking__loading[data-visible="true"]{display:flex}
+.booking__spinner{width:18px;height:18px;border-radius:50%;
+  border:2.5px solid #d8dbe6;border-top-color:var(--brand-lit);
+  animation:mcc-spin .7s linear infinite;flex-shrink:0}
+@keyframes mcc-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.booking__spinner{animation:none}}
 /* Hauteur proportionnelle a l'ecran : jamais plus de 72 % de la
    fenetre, pour que le haut du calendrier et les cartes restent
    visibles ensemble. Bornee pour rester lisible sur tres petit

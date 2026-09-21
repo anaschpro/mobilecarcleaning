@@ -289,7 +289,7 @@
 
   var cartes = [].slice.call(document.querySelectorAll(".formules .pick"));
 
-  function afficher(service, deplacerLaVue) {
+  function afficher(service) {
     cadre.src = BASE + "/services/" + MCC_SERVICES[service];
 
     cartes.forEach(function (c) {
@@ -304,21 +304,18 @@
       history.replaceState(null, "", "reserver.html?f=" + service);
     } catch (e) {}
 
-    if (deplacerLaVue && emplacement) {
-      emplacement.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
   }
 
   cartes.forEach(function (c) {
     var radio = c.querySelector("input");
     if (radio) {
       radio.addEventListener("change", function () {
-        afficher(c.getAttribute("data-service"), true);
+        afficher(c.getAttribute("data-service"));
       });
     }
   });
 
-  afficher(choix, false);
+  afficher(choix);
 })();
 </script>
 <!-- WIDGET SETMORE — fin -->

@@ -354,7 +354,10 @@ p:last-child{margin-bottom:0}
 .faq details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .faq details p{color:var(--muted);font-size:.96rem;padding-bottom:1.4rem}
 
-.booking__frame{margin-top:2rem;border:1px solid var(--line);border-radius:var(--r);
+/* position:relative EST NECESSAIRE : c'est sur ce bloc que
+   l'indicateur de chargement se cale (inset:0). */
+.booking__frame{position:relative;margin-top:2rem;
+  border:1px solid var(--line);border-radius:var(--r);
   background:#fff;overflow:hidden}
 /* Grille de choix de la formule, au-dessus du calendrier */
 .formules{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));
@@ -365,8 +368,7 @@ p:last-child{margin-bottom:0}
 .formules .pick:focus-within{outline:3px solid var(--water);outline-offset:3px}
 .formules .tile-price{font-size:1.2rem}
 .formules__note{color:var(--muted);font-size:.85rem;max-width:66ch}
-#mcc-booking{width:100%;position:relative}
-#mcc-booking-frame{transition:opacity .2s ease}
+#mcc-booking{width:100%}
 
 /* Indicateur affiche pendant que Setmore demarre (premier chargement
    ou changement de formule) : superpose au cadre plutot que de
@@ -384,8 +386,11 @@ p:last-child{margin-bottom:0}
    fenetre, pour que le haut du calendrier et les cartes restent
    visibles ensemble. Bornee pour rester lisible sur tres petit
    et tres grand ecran. */
-#mcc-booking-frame{display:block;width:100%;border:0;
+/* Plusieurs calendriers peuvent coexister (un par formule deja
+   consultee) : seul celui marque data-actif="true" est affiche. */
+.mcc-booking-frame{display:block;width:100%;border:0;
   height:clamp(520px,72vh,780px)}
+.mcc-booking-frame[data-actif="false"]{display:none}
 .booking__fallback{padding:2.5rem 1.5rem;text-align:center;color:#333}
 
 /* ---------- 11. RÉALISATIONS ---------- */

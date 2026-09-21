@@ -1,3 +1,4 @@
+
 /* ============================================================
    MOBILE CAR CLEANING — script commun à toutes les pages.
    Chaque bloc se désactive tout seul si l'élément est absent,
@@ -77,7 +78,14 @@
     picks.forEach(function(p){
       var price = p.getAttribute('data-p-' + currentVtype);
       var out = p.querySelector('.tile-price');
-      if(price && out) out.textContent = price + ' €';
+      if(!price || !out) return;
+      out.textContent = price + ' €';
+      var sfx = out.getAttribute('data-suffix');
+      if(sfx){
+        var s = document.createElement('small');
+        s.textContent = sfx;
+        out.appendChild(s);
+      }
     });
   }
 
@@ -149,7 +157,15 @@
     function apply(vtype){
       priceEls.forEach(function(el){
         var v = el.getAttribute('data-p-' + vtype);
-        if(v) el.textContent = v + ' €';
+        if(!v) return;
+        el.textContent = v + ' €';
+        /* Certains prix portent un suffixe (/mois, /véh.) : on le remet. */
+        var sfx = el.getAttribute('data-suffix');
+        if(sfx){
+          var s = document.createElement('small');
+          s.textContent = sfx;
+          el.appendChild(s);
+        }
       });
       btns.forEach(function(b){
         b.setAttribute('aria-pressed', String(b.getAttribute('data-vtype') === vtype));

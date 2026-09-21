@@ -69,7 +69,9 @@
 (function(){
   var picks = [].slice.call(document.querySelectorAll('.pick'));
   var cta = document.getElementById('pick-cta');
-  var vtypeBtns = [].slice.call(document.querySelectorAll('.vtype__btn'));
+  /* Uniquement les boutons du groupe du hero : ceux des grilles de cartes
+     portent un data-scope et sont pilotes par le bloc en bas de fichier. */
+  var vtypeBtns = [].slice.call(document.querySelectorAll('.vtype:not([data-scope]) .vtype__btn'));
   if(!picks.length) return;
 
   var currentVtype = 'citadine';
@@ -95,11 +97,12 @@
       var on = input && input.checked;
       p.setAttribute('data-checked', String(!!on));
       if(on && cta){
+        /* Le forfait choisi voyage dans l'URL du bouton : la page de
+           reservation ouvre alors directement le bon creneau. Arriver
+           sur reserver.html par le menu affiche toutes les formules. */
+        var slug = p.getAttribute('data-cal') || '';
         cta.textContent = 'Réserver — ' + (p.getAttribute('data-label') || 'ce forfait');
-        try {
-          sessionStorage.setItem('mcc-formule', p.getAttribute('data-cal') || '');
-          sessionStorage.setItem('mcc-vtype', currentVtype);
-        } catch(e){}
+        cta.href = slug ? 'reserver.html?f=' + encodeURIComponent(slug) : 'reserver.html';
       }
     });
   }

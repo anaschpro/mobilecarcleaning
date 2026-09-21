@@ -1,23 +1,24 @@
+@charset "UTF-8";
 /* ============================================================
-   MOBILE CAR CLEANING â€” feuille de style unique de tout le site.
+   MOBILE CAR CLEANING — feuille de style unique de tout le site.
    Modifier une valeur ici la change sur TOUTES les pages.
 
    SOMMAIRE
-     1. Couleurs et rÃ©glages   6. Prestations      11. RÃ©alisations
+     1. Couleurs et réglages   6. Prestations      11. Réalisations
      2. Base                   7. Jauge d'eau      12. Journal
      3. Boutons                8. Onglets          13. Pages de texte
-     4. En-tÃªte                9. Flottes          14. Contact / pied de page
-     5. Hero et sÃ©lecteur     10. Tarifs / FAQ     15. Ã€ propos
+     4. En-tête                9. Flottes          14. Contact / pied de page
+     5. Hero et sélecteur     10. Tarifs / FAQ     15. À propos
    ============================================================ */
 
-/* ---------- 1. COULEURS ET RÃ‰GLAGES ---------- */
+/* ---------- 1. COULEURS ET RÉGLAGES ---------- */
 :root{
   --ink:#06070F;        /* fond principal */
-  --deep:#0D1030;       /* fond des sections alternÃ©es */
+  --deep:#0D1030;       /* fond des sections alternées */
   --card:#10132E;       /* fond des cartes */
   --brand:#2A2FD1;      /* bleu du logo */
   --brand-lit:#5468FF;  /* bleu vif : boutons, puces */
-  --water:#63D9E6;      /* cyan : rÃ©servÃ© Ã  l'argument eau */
+  --water:#63D9E6;      /* cyan : réservé à l'argument eau */
   --paper:#F2F4FA;      /* texte clair */
   --muted:#98A1BF;      /* texte secondaire */
   --line:rgba(255,255,255,.10);
@@ -70,7 +71,7 @@ p:last-child{margin-bottom:0}
 .btn--sm{padding:.6rem 1.15rem;font-size:.92rem}
 .btn--full{width:100%}
 
-/* ---------- 4. EN-TÃŠTE ---------- */
+/* ---------- 4. EN-TÊTE ---------- */
 .header{position:sticky;top:0;z-index:100;background:rgba(6,7,15,.84);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .header__inner{display:flex;align-items:center;gap:1.5rem;min-height:74px}
@@ -81,8 +82,8 @@ p:last-child{margin-bottom:0}
   padding-block:.35rem;border-bottom:2px solid transparent;transition:color .16s,border-color .16s}
 .nav a:hover{color:var(--paper);border-bottom-color:var(--brand-lit)}
 .nav a[aria-current="page"]{color:var(--paper);border-bottom-color:var(--brand-lit)}
-/* Le bouton du menu ne sert que sur mobile : sur grand Ã©cran c'est
-   .header__cta qui s'affiche, sinon on aurait deux fois "RÃ©servez". */
+/* Le bouton du menu ne sert que sur mobile : sur grand écran c'est
+   .header__cta qui s'affiche, sinon on aurait deux fois "Réservez". */
 .nav a.btn{border-bottom-color:transparent;color:#fff;display:none}
 .nav a.btn:hover{border-bottom-color:transparent}
 .burger{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--r-sm);
@@ -119,7 +120,7 @@ p:last-child{margin-bottom:0}
 .hero__actions{display:flex;flex-wrap:wrap;gap:.85rem}
 @media (max-width:900px){.hero__inner{grid-template-columns:1fr;align-items:start}}
 
-/* Bandeau de titre des pages intÃ©rieures */
+/* Bandeau de titre des pages intérieures */
 .pagehead{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
   background:linear-gradient(160deg,rgba(42,47,209,.28),var(--ink) 62%);
   padding-block:clamp(3.5rem,8vw,6rem)}
@@ -130,7 +131,7 @@ p:last-child{margin-bottom:0}
   background:radial-gradient(120% 100% at 78% 8%,rgba(42,47,209,.45),transparent 62%),
              linear-gradient(180deg,rgba(6,7,15,.55) 0%,rgba(6,7,15,.8) 60%,var(--ink) 100%)}
 .pagehead .wrap{position:relative;z-index:1}
-/* Pastille indiquant l'image attendue â€” supprimez-la une fois la photo posÃ©e */
+/* Pastille indiquant l'image attendue — supprimez-la une fois la photo posée */
 .ph-hint{position:absolute;right:1.25rem;bottom:1.25rem;z-index:2;
   border:1px dashed var(--line-strong);border-radius:100px;
   background:rgba(6,7,15,.7);padding:.5rem 1rem;font-size:.76rem;color:var(--muted)}
@@ -141,7 +142,7 @@ p:last-child{margin-bottom:0}
 .crumb a{text-decoration:none}
 .crumb a:hover{color:var(--paper)}
 
-/* SÃ©lecteur de formule flottant du hero */
+/* Sélecteur de formule flottant du hero */
 .tile{border:1px solid var(--line-strong);border-radius:var(--r);
   background:rgba(10,12,34,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:1.5rem}
 .tile__head{display:flex;justify-content:space-between;align-items:baseline;
@@ -193,16 +194,16 @@ p:last-child{margin-bottom:0}
 .tile .btn{margin-top:1rem}
 .tile__note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.85rem}
 
-/* Bandeau dÃ©filant */
+/* Bandeau défilant */
 .marquee{background:var(--brand);border-block:1px solid rgba(255,255,255,.14);overflow:hidden;padding-block:.85rem}
 .marquee__track{display:flex;width:max-content;animation:slide 38s linear infinite}
 .marquee span{font-family:Archivo,sans-serif;font-weight:700;font-size:.82rem;
   font-variation-settings:"wdth" 105;letter-spacing:.13em;text-transform:uppercase;
   padding-inline:1.5rem;white-space:nowrap;color:#fff}
-.marquee span::after{content:"âœ³";margin-left:3rem;color:rgba(255,255,255,.5)}
+.marquee span::after{content:"\2733";margin-left:3rem;color:rgba(255,255,255,.5)}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* DÃ©claration */
+/* Déclaration */
 .claim h2{font-size:clamp(2.1rem,1.1rem + 4.2vw,4rem);max-width:20ch}
 .claim h2 + h2{color:var(--muted);margin-top:.35rem}
 .claim__foot{margin-top:2.75rem;padding-top:2rem;border-top:1px solid var(--line);
@@ -228,7 +229,7 @@ p:last-child{margin-bottom:0}
 .svc li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;
   border-radius:2px;background:var(--brand-lit)}
 
-/* Deux mÃ©thodes cÃ´te Ã  cÃ´te (sans rinÃ§age / Ã  l'eau) */
+/* Deux méthodes côte à côte (sans rinçage / à l'eau) */
 .duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.35rem}
 .method{border:1px solid var(--line);border-radius:var(--r);padding:1.9rem 1.75rem;background:var(--card)}
 .method--lead{border-color:var(--water)}
@@ -309,7 +310,7 @@ p:last-child{margin-bottom:0}
   .hide-sm{display:none}
 }
 
-/* ---------- 10. TARIFS, ABONNEMENT, FAQ, RÃ‰SERVATION ---------- */
+/* ---------- 10. TARIFS, ABONNEMENT, FAQ, RÉSERVATION ---------- */
 .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:1.5rem;align-items:start}
 .plan{border:1px solid var(--line);border-radius:var(--r);padding:2rem 1.8rem;background:var(--card);
   display:flex;flex-direction:column;height:100%}
@@ -358,7 +359,7 @@ p:last-child{margin-bottom:0}
 #my-cal-inline{width:100%;min-height:620px}
 .booking__fallback{padding:2.5rem 1.5rem;text-align:center;color:#333}
 
-/* ---------- 11. RÃ‰ALISATIONS ---------- */
+/* ---------- 11. RÉALISATIONS ---------- */
 .filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.25rem}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:1.35rem}
 .work{border:1px solid var(--line);border-radius:var(--r);background:var(--card);overflow:hidden}
@@ -388,7 +389,7 @@ p:last-child{margin-bottom:0}
 .post p{font-size:.92rem;color:var(--muted);margin:0 0 1.2rem}
 .post__more{margin-top:auto;font-size:.88rem;font-weight:600;color:var(--paper)}
 
-/* ---------- 13. PAGES DE TEXTE (articles, mentions lÃ©gales) ---------- */
+/* ---------- 13. PAGES DE TEXTE (articles, mentions légales) ---------- */
 .prose{max-width:70ch}
 .prose h2{font-size:clamp(1.5rem,1.2rem + 1.3vw,2.05rem);margin:2.75rem 0 1rem}
 .prose h3{margin:2rem 0 .75rem}
@@ -406,7 +407,7 @@ p:last-child{margin-bottom:0}
 .prose td{padding:.7rem .8rem;border-bottom:1px solid var(--line);color:var(--muted)}
 .postmeta{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;color:var(--muted);font-size:.88rem;margin-top:1.25rem}
 
-/* ---------- 14. CONTACT, APPEL Ã€ L'ACTION, PIED DE PAGE ---------- */
+/* ---------- 14. CONTACT, APPEL À L'ACTION, PIED DE PAGE ---------- */
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:2.25rem}
 .contact h3{font-size:.98rem;margin-bottom:.85rem;color:var(--muted);font-weight:600;font-variation-settings:"wdth" 100}
 .contact p,.contact a{font-size:1.05rem;color:var(--paper);text-decoration:none;line-height:1.5}
@@ -435,7 +436,7 @@ p:last-child{margin-bottom:0}
 .footer__legal a{color:var(--muted)}
 .footer__legal a:hover{color:var(--paper)}
 
-/* ---------- 15. Ã€ PROPOS ---------- */
+/* ---------- 15. À PROPOS ---------- */
 .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:clamp(2rem,5vw,4rem);align-items:center}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.25rem;
@@ -461,19 +462,19 @@ p:last-child{margin-bottom:0}
 
 /* ============================================================
    EMPLACEMENTS PHOTO
-   Chaque cadre en pointillÃ©s indique une photo Ã  fournir.
-   Pour la poser, remplacez tout le <span>â€¦</span> intÃ©rieur par :
+   Chaque cadre en pointillés indique une photo à fournir.
+   Pour la poser, remplacez tout le <span>…</span> intérieur par :
      <img src="assets/mon-fichier.jpg" alt="Description">
    ============================================================ */
 .ph{border:1px dashed var(--line-strong);border-radius:var(--r);
   background:linear-gradient(135deg,rgba(42,47,209,.26),rgba(10,12,34,.45));
   display:grid;place-items:center;text-align:center;padding:1.25rem;overflow:hidden}
 .ph img{width:100%;height:100%;object-fit:cover}
-/* DÃ¨s qu'une <img> est prÃ©sente ET se charge, le cadre en pointillÃ©s,
-   le fond dÃ©gradÃ© et le texte d'emplacement disparaissent tout seuls â€”
-   il suffit donc de dÃ©poser le fichier dans assets/, rien d'autre Ã  toucher.
+/* Dès qu'une <img> est présente ET se charge, le cadre en pointillés,
+   le fond dégradé et le texte d'emplacement disparaissent tout seuls —
+   il suffit donc de déposer le fichier dans assets/, rien d'autre à toucher.
    Si le fichier n'existe pas (encore), onerror="this.remove()" retire l'image
-   et le cadre en pointillÃ©s avec son texte rÃ©apparaÃ®t automatiquement. */
+   et le cadre en pointillés avec son texte réapparaît automatiquement. */
 .ph:has(img){border-style:solid;border-color:transparent;background:none;padding:0}
 .ph:has(img) span{display:none}
 /* Vignette journal : si le bandeau source n'est pas encore depose, on revient
@@ -490,26 +491,26 @@ p:last-child{margin-bottom:0}
 .ph--band{margin-top:clamp(2.5rem,5vw,3.5rem)}
 .ph-duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.35rem}
 
-/* Emplacements photo dans la galerie RÃ©alisations */
+/* Emplacements photo dans la galerie Réalisations */
 .work__ph b{display:block;color:var(--paper);font-weight:600;font-size:.85rem;margin-bottom:.4rem}
 .work__ph code{display:block;font-size:.78rem;color:var(--water);margin-top:.4rem;word-break:break-all}
 .work__art{border:1px dashed transparent}
 .work__art:has(.work__ph){border-color:var(--line-strong)}
 .work__art img{width:100%;height:100%;object-fit:cover}
-/* DÃ¨s qu'une vraie <img> remplace le <span class="work__ph">, la bordure
-   en pointillÃ©s disparaÃ®t automatiquement, comme pour le reste du site. */
+/* Dès qu'une vraie <img> remplace le <span class="work__ph">, la bordure
+   en pointillés disparaît automatiquement, comme pour le reste du site. */
 .work__art:has(img){border-color:transparent}
 
 
 /* ============================================================
-   16. RÃ‰ALISATIONS â€” un carrousel par chantier
-   Tout ce bloc ne sert qu'Ã  realisations.html.
+   16. RÉALISATIONS — un carrousel par chantier
+   Tout ce bloc ne sert qu'à realisations.html.
    ============================================================ */
 .jobs{display:grid;gap:clamp(3.25rem,7vw,5.5rem)}
 
 .job{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
   gap:clamp(1.5rem,4vw,3.25rem);align-items:center}
-/* Une rÃ©alisation sur deux inverse photo et texte : rien Ã  faire, c'est automatique. */
+/* Une réalisation sur deux inverse photo et texte : rien à faire, c'est automatique. */
 .job:nth-child(even) .job__shots{order:2}
 
 .job__txt{min-width:0}
@@ -518,7 +519,7 @@ p:last-child{margin-bottom:0}
   color:var(--brand-lit);font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .job__title{font-size:clamp(1.35rem,2.4vw,1.75rem);margin:0 0 1.1rem}
 
-/* Les mots-clÃ©s : c'est lÃ  que vous dÃ©crivez le chantier, en 3 Ã  6 Ã©tiquettes. */
+/* Les mots-clés : c'est là que vous décrivez le chantier, en 3 à 6 étiquettes. */
 .job__tags{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;margin:0 0 1.15rem;padding:0}
 .job__tags li{font-size:.83rem;color:var(--paper);background:rgba(255,255,255,.05);
   border:1px solid var(--line);border-radius:var(--r-sm);padding:.34rem .7rem;line-height:1.3}
@@ -536,12 +537,12 @@ p:last-child{margin-bottom:0}
 .shots>li{flex:0 0 100%;min-width:0;scroll-snap-align:center;position:relative}
 .shots img{width:100%;height:100%;object-fit:cover}
 
-/* Emplacement quand la photo n'est pas encore lÃ  */
+/* Emplacement quand la photo n'est pas encore là */
 .shots .shot-ph{display:flex;width:100%;height:100%;align-items:center;justify-content:center;
   text-align:center;padding:1.5rem;color:var(--muted);font-size:.8rem;line-height:1.55}
 .shots .shot-ph code{display:block;margin-top:.45rem;color:var(--water);font-size:.76rem;word-break:break-all}
 
-/* FlÃ¨ches â€” masquÃ©es automatiquement s'il n'y a qu'une photo */
+/* Flèches — masquées automatiquement s'il n'y a qu'une photo */
 .shots__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;
   width:40px;height:40px;display:grid;place-items:center;cursor:pointer;
   border:1px solid var(--line-strong);border-radius:50%;
@@ -589,7 +590,7 @@ p:last-child{margin-bottom:0}
   background:var(--brand-lit);color:#fff;font-size:.68rem;font-weight:700;
   letter-spacing:.07em;text-transform:uppercase}
 
-/* AperÃ§u du bon cadeau */
+/* Aperçu du bon cadeau */
 .voucher{border:1px solid var(--line-strong);border-radius:var(--r);overflow:hidden;
   background:linear-gradient(135deg,var(--deep),var(--card));max-width:460px}
 .voucher__top{padding:1.5rem 1.6rem 1.2rem;border-bottom:1px dashed var(--line-strong)}

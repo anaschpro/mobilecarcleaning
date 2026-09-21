@@ -356,6 +356,15 @@ p:last-child{margin-bottom:0}
 
 .booking__frame{margin-top:2.5rem;border:1px solid var(--line);border-radius:var(--r);
   background:#fff;overflow:hidden;min-height:760px}
+/* Grille de choix de la formule, au-dessus du calendrier */
+.formules{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));
+  gap:.6rem;margin-bottom:1rem}
+.formules .pick{margin-bottom:0;background:var(--card);border-color:var(--line)}
+.formules .pick:hover{background:rgba(255,255,255,.05);border-color:var(--line-strong)}
+.formules .pick[data-checked="true"]{background:rgba(84,104,255,.16);border-color:var(--brand-lit)}
+.formules .pick:focus-within{outline:3px solid var(--water);outline-offset:3px}
+.formules .tile-price{font-size:1.2rem}
+.formules__note{color:var(--muted);font-size:.85rem;max-width:66ch}
 #mcc-booking{width:100%}
 #mcc-booking-frame{display:block;width:100%;height:760px;border:0}
 .booking__fallback{padding:2.5rem 1.5rem;text-align:center;color:#333}

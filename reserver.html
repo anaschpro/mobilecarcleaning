@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,6 +30,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://mobilecarcleaning.setmore.com">
+<link rel="preconnect" href="https://assets.setmore.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <!-- Tous les styles du site sont dans ce fichier unique -->
@@ -157,6 +160,10 @@
 
     <div class="booking__frame">
       <div id="mcc-booking"></div>
+      <div class="booking__loading" id="mcc-loading" aria-live="polite">
+        <span class="booking__spinner" aria-hidden="true"></span>
+        Chargement du calendrier…
+      </div>
       <noscript>
         <p class="booking__fallback">Le calendrier a besoin de JavaScript pour s'afficher.
           <a href="https://mobilecarcleaning.setmore.com">Ouvrir la page de réservation</a>,
@@ -287,9 +294,22 @@
   var emplacement = document.getElementById("mcc-booking");
   if (emplacement) emplacement.appendChild(cadre);
 
+  var chargement = document.getElementById("mcc-loading");
+  /* Setmore est une application lourde à démarrer : on l'affiche
+     dès le clic (le client sait que ça travaille, pas que c'est
+     cassé) et on la masque quand l'iframe a fini de se charger. */
+  if (chargement) {
+    cadre.style.opacity = "0";
+    cadre.addEventListener("load", function () {
+      chargement.setAttribute("data-visible", "false");
+      cadre.style.opacity = "1";
+    });
+  }
+
   var cartes = [].slice.call(document.querySelectorAll(".formules .pick"));
 
   function afficher(service) {
+    if (chargement) chargement.setAttribute("data-visible", "true");
     cadre.src = BASE + "/services/" + MCC_SERVICES[service];
 
     cartes.forEach(function (c) {
@@ -315,6 +335,7 @@
     }
   });
 
+  if (chargement) chargement.setAttribute("data-visible", "true");
   afficher(choix);
 })();
 </script>

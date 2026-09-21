@@ -87,9 +87,74 @@
 <section class="section" id="booking">
   <div class="wrap">
     <div class="head">
-      <h2>Calendrier de réservation</h2>
-      <p>Si vous ne trouvez pas de créneau qui vous convient, ou si rien ne s'affiche ci-dessous, appelez-nous au 06 23 32 64 82 : on trouve souvent une solution.</p>
+      <h2>Choisissez votre formule</h2>
+      <p>Le calendrier se met à jour tout seul selon la formule sélectionnée. Si aucun créneau ne vous convient, appelez-nous au 06 23 32 64 82 : on trouve souvent une solution.</p>
     </div>
+
+    <!-- Sélecteur maison : évite au client de déplier les catégories
+         sur la page Setmore. Chaque data-service correspond à une clé
+         du tableau MCC_SERVICES, en bas de cette page. -->
+    <div class="formules" role="group" aria-label="Formule à réserver">
+
+      <label class="pick" data-service="express-exterieur">
+        <input type="radio" name="formule" value="express-exterieur">
+        <span class="pick__row">
+          <span class="pick__name">Express extérieur<small class="pick__meta">45 minutes</small></span>
+          <span class="tile-price">49 €</span>
+        </span>
+      </label>
+
+      <label class="pick" data-service="interieur">
+        <input type="radio" name="formule" value="interieur">
+        <span class="pick__row">
+          <span class="pick__name">Intérieur<small class="pick__meta">1 heure</small></span>
+          <span class="tile-price">59 €</span>
+        </span>
+      </label>
+
+      <label class="pick" data-service="complet">
+        <input type="radio" name="formule" value="complet" checked>
+        <span class="pick__row">
+          <span class="pick__name">Complet<small class="pick__meta">1 h 45 — le plus choisi</small></span>
+          <span class="tile-price">89 €</span>
+        </span>
+      </label>
+
+      <label class="pick" data-service="complet-protection">
+        <input type="radio" name="formule" value="complet-protection">
+        <span class="pick__row">
+          <span class="pick__name">Complet + protection<small class="pick__meta">2 h 30</small></span>
+          <span class="tile-price">129 €</span>
+        </span>
+      </label>
+
+      <label class="pick" data-service="detailing-interieur">
+        <input type="radio" name="formule" value="detailing-interieur">
+        <span class="pick__row">
+          <span class="pick__name">Detailing intérieur<small class="pick__meta">3 heures</small></span>
+          <span class="tile-price">149 €</span>
+        </span>
+      </label>
+
+      <label class="pick" data-service="phares">
+        <input type="radio" name="formule" value="phares">
+        <span class="pick__row">
+          <span class="pick__name">Rénovation des phares<small class="pick__meta">En complément d'une formule</small></span>
+          <span class="tile-price">59 €</span>
+        </span>
+      </label>
+
+      <label class="pick pick--devis" data-service="devis">
+        <input type="radio" name="formule" value="devis">
+        <span class="pick__row">
+          <span class="pick__name">Devis / appel conseil<small class="pick__meta">Polissage, restitution de leasing, flotte</small></span>
+          <span class="tile-price">Gratuit</span>
+        </span>
+      </label>
+
+    </div>
+    <p class="formules__note">Prix indiqués pour une citadine. Un supplément s'applique selon le gabarit du véhicule, confirmé avant l'intervention.</p>
+
     <div class="booking__frame">
       <div id="mcc-booking"></div>
       <noscript>
@@ -208,12 +273,12 @@
   var choix = "";
   try { choix = new URLSearchParams(location.search).get("f") || ""; } catch (e) {}
 
-  var connu = Object.prototype.hasOwnProperty.call(MCC_SERVICES, choix);
-  var url = connu ? BASE + "/services/" + MCC_SERVICES[choix] : BASE;
+  if (!Object.prototype.hasOwnProperty.call(MCC_SERVICES, choix)) choix = "complet";
 
+  /* Le calendrier : une seule iframe, dont on change l'adresse
+     quand le visiteur sélectionne une autre formule. */
   var cadre = document.createElement("iframe");
   cadre.id = "mcc-booking-frame";
-  cadre.src = url;
   cadre.title = "Calendrier de réservation Mobile Car Cleaning";
   cadre.setAttribute("scrolling", "yes");
   cadre.setAttribute("frameborder", "0");
@@ -221,6 +286,39 @@
 
   var emplacement = document.getElementById("mcc-booking");
   if (emplacement) emplacement.appendChild(cadre);
+
+  var cartes = [].slice.call(document.querySelectorAll(".formules .pick"));
+
+  function afficher(service, deplacerLaVue) {
+    cadre.src = BASE + "/services/" + MCC_SERVICES[service];
+
+    cartes.forEach(function (c) {
+      var actif = c.getAttribute("data-service") === service;
+      c.setAttribute("data-checked", String(actif));
+      var radio = c.querySelector("input");
+      if (radio) radio.checked = actif;
+    });
+
+    /* L'adresse reste partageable : un lien copié rouvre la bonne formule. */
+    try {
+      history.replaceState(null, "", "reserver.html?f=" + service);
+    } catch (e) {}
+
+    if (deplacerLaVue && emplacement) {
+      emplacement.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+
+  cartes.forEach(function (c) {
+    var radio = c.querySelector("input");
+    if (radio) {
+      radio.addEventListener("change", function () {
+        afficher(c.getAttribute("data-service"), true);
+      });
+    }
+  });
+
+  afficher(choix, false);
 })();
 </script>
 <!-- WIDGET SETMORE — fin -->

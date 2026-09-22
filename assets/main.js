@@ -14,11 +14,27 @@
     b.setAttribute('aria-expanded', String(!open));
     b.setAttribute('aria-label', !open ? 'Fermer le menu' : 'Ouvrir le menu');
   });
+  function fermer(rendreFocus){
+    if(n.getAttribute('data-open') !== 'true') return;
+    n.setAttribute('data-open','false');
+    b.setAttribute('aria-expanded','false');
+    b.setAttribute('aria-label','Ouvrir le menu');
+    if(rendreFocus) b.focus();
+  }
+
   n.addEventListener('click', function(e){
-    if(e.target.tagName === 'A'){
-      n.setAttribute('data-open','false');
-      b.setAttribute('aria-expanded','false');
-    }
+    if(e.target.tagName === 'A') fermer(false);
+  });
+
+  /* Échap referme le menu et rend le focus au bouton. */
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' || e.key === 'Esc') fermer(true);
+  });
+
+  /* Un clic en dehors du menu le referme aussi. */
+  document.addEventListener('click', function(e){
+    if(n.contains(e.target) || b.contains(e.target)) return;
+    fermer(false);
   });
 })();
 
@@ -142,6 +158,18 @@
   });
 })();
 
+/* --- Date de validité de la carte cadeau (12 mois glissants) --- */
+(function(){
+  var els = [].slice.call(document.querySelectorAll('[data-validite]'));
+  if(!els.length) return;
+  els.forEach(function(el){
+    var mois = parseInt(el.getAttribute('data-validite'), 10) || 12;
+    var d = new Date();
+    d.setMonth(d.getMonth() + mois);
+    el.textContent = "jusqu'au " + d.toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+  });
+})();
+
 /* --- Année automatique dans le pied de page --- */
 (function(){
   var y = document.getElementById('year');
@@ -175,6 +203,36 @@
     }
     btns.forEach(function(b){
       b.addEventListener('click', function(){ apply(b.getAttribute('data-vtype')); });
+    });
+  });
+})();
+
+/* ============================================================
+   SYNCHRONISATION DES SÉLECTEURS DE GABARIT
+   Une page peut porter plusieurs groupes Citadine/Berline/SUV
+   (celui du hero, celui des cartes). Choisir un gabarit dans
+   l'un doit le choisir dans tous, sinon le haut et le bas de
+   la page affichent deux tarifs différents.
+   Ce bloc est volontairement en fin de fichier : les groupes
+   ont déjà posé leurs propres gestionnaires de clic.
+   ============================================================ */
+(function(){
+  var groupes = [].slice.call(document.querySelectorAll('.vtype'));
+  if(groupes.length < 2) return;
+  var enCours = false;
+
+  groupes.forEach(function(g){
+    g.addEventListener('click', function(e){
+      var btn = e.target && e.target.closest ? e.target.closest('.vtype__btn') : null;
+      if(!btn || enCours) return;
+      var gabarit = btn.getAttribute('data-vtype');
+      enCours = true;
+      groupes.forEach(function(autre){
+        if(autre === g) return;
+        var jumeau = autre.querySelector('.vtype__btn[data-vtype="' + gabarit + '"]');
+        if(jumeau && jumeau.getAttribute('aria-pressed') !== 'true') jumeau.click();
+      });
+      enCours = false;
     });
   });
 })();

@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -59,7 +60,7 @@
       <a href="detailing.html">Detailing</a>
       <a href="b2b.html">Pros &amp; flottes</a>
       <a href="abonnement.html">Abonnement</a>
-      <a class="btn btn--primary btn--sm" href="reserver.html">Réservez</a>
+      <a class="btn btn--primary btn--sm" href="reserver.html" aria-current="page">Réservez</a>
     </nav>
 
     <a class="btn btn--primary btn--sm header__cta" href="reserver.html">Réservez</a>
@@ -88,7 +89,7 @@
   <div class="wrap">
     <div class="head">
       <h2>Choisissez votre formule</h2>
-      <p>Le calendrier se met à jour tout seul selon la formule sélectionnée. Si aucun créneau ne vous convient, appelez-nous au 06 23 32 64 82 : on trouve souvent une solution.</p>
+      <p>Le calendrier se met à jour tout seul selon la formule sélectionnée. Si aucun créneau ne vous convient, appelez-nous au 06 66 89 82 12 : on trouve souvent une solution.</p>
     </div>
 
     <!-- Sélecteur maison : évite au client de déplier les catégories
@@ -161,12 +162,19 @@
         <span class="booking__spinner" aria-hidden="true"></span>
         Chargement du calendrier…
       </div>
+      <p class="booking__fallback booking__fallback--sur" id="mcc-secours" role="status" hidden>Le calendrier met trop de temps à répondre.
+        <a href="https://mobilecarcleaning.setmore.com" target="_blank" rel="noopener">Ouvrir la page de réservation</a>,
+        ou appelez-nous au <a href="tel:+33666898212">06 66 89 82 12</a>.</p>
       <noscript>
         <p class="booking__fallback">Le calendrier a besoin de JavaScript pour s'afficher.
           <a href="https://mobilecarcleaning.setmore.com">Ouvrir la page de réservation</a>,
-          ou appelez-nous au 06 23 32 64 82.</p>
+          ou appelez-nous au 06 66 89 82 12.</p>
       </noscript>
     </div>
+    <p class="booking__aide">Le calendrier ne s'affiche pas&nbsp;?
+      <a href="https://mobilecarcleaning.setmore.com" target="_blank" rel="noopener">Ouvrir la page de réservation</a>,
+      nous écrire sur <a href="https://wa.me/33666898212?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20cr%C3%A9neau." target="_blank" rel="noopener">WhatsApp</a>
+      ou appeler le <a href="tel:+33666898212">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>.</p>
   </div>
 </section>
 
@@ -182,7 +190,7 @@
       <details><summary>Et si je dois annuler ?</summary>
         <p>Annulation ou report libre jusqu'à 24 h avant le rendez-vous, depuis le lien reçu dans l'email de confirmation. Aucun acompte n'est demandé à la réservation.</p></details>
       <details><summary>Je préfère réserver par téléphone</summary>
-        <p>Aucun problème. Appelez-nous au 06 23 32 64 82, on cale le créneau ensemble.</p></details>
+        <p>Aucun problème. Appelez-nous au 06 66 89 82 12, on cale le créneau ensemble.</p></details>
     </div>
   </div>
 </section>
@@ -195,8 +203,13 @@
   <div class="wrap">
     <div class="footer__cols">
       <div class="footer__brand">
-        <img src="assets/logo.png" alt="Mobile Car Cleaning" width="492" height="160">
+        <img src="assets/logo.png" alt="Mobile Car Cleaning" width="492" height="160" loading="lazy" decoding="async">
         <p>Lavage et nettoyage automobile mobile en Alsace. Sur rendez-vous, 7 jours sur 7.</p>
+        <div class="footer__contact">
+          <a class="btn btn--wa btn--sm" href="https://wa.me/33666898212" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.5 8.5 0 0 1 8.5 8.5z"/></svg>WhatsApp</a>
+          <a class="btn btn--ghost btn--sm" href="tel:+33666898212">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>
+        </div>
+        <a class="footer__mail" href="mailto:bonjour@mobilecarcleaning.fr">bonjour@mobilecarcleaning.fr</a>
         <a class="footer__insta" href="https://www.instagram.com/mobilecarcleaning.fr/" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
           <span>Suivez nos dernières réalisations sur Instagram</span>
@@ -287,6 +300,7 @@
 
   var emplacement = document.getElementById("mcc-booking");
   var chargement  = document.getElementById("mcc-loading");
+  var secours     = document.getElementById("mcc-secours");
   var cartes      = [].slice.call(document.querySelectorAll(".formules .pick"));
   if (!emplacement) return;
 
@@ -294,6 +308,8 @@
      revenir sur une formule déjà consultée est alors instantané,
      au lieu de relancer Setmore depuis zéro à chaque clic. */
   var cadres = {};
+  var ordre = [];
+  var MAX_CADRES = 3;
   var minuteries = [];
 
   function stopMinuteries() {
@@ -304,12 +320,22 @@
   function masquerIndicateur() {
     stopMinuteries();
     if (chargement) chargement.setAttribute("data-visible", "false");
+    if (secours) secours.hidden = true;
+  }
+
+  /* Au bout de SECURITE, on ne laisse PAS un cadre blanc muet :
+     on propose la page Setmore et le téléphone. */
+  function echecChargement() {
+    stopMinuteries();
+    if (chargement) chargement.setAttribute("data-visible", "false");
+    if (secours) secours.hidden = false;
   }
 
   function montrerIndicateur() {
     stopMinuteries();
+    if (secours) secours.hidden = true;
     if (chargement) chargement.setAttribute("data-visible", "true");
-    minuteries.push(setTimeout(masquerIndicateur, SECURITE));
+    minuteries.push(setTimeout(echecChargement, SECURITE));
   }
 
   function creerCadre(service) {
@@ -334,6 +360,18 @@
     f.src = BASE + "/services/" + MCC_SERVICES[service];
     emplacement.appendChild(f);
     cadres[service] = f;
+    ordre.push(service);
+
+    /* On garde les trois derniers calendriers en mémoire : revenir sur
+       une formule reste instantané, sans faire tourner sept calendriers
+       en parallèle sur un téléphone. */
+    while (ordre.length > MAX_CADRES) {
+      var vieux = ordre.shift();
+      if (vieux !== service && cadres[vieux]) {
+        cadres[vieux].parentNode.removeChild(cadres[vieux]);
+        delete cadres[vieux];
+      }
+    }
     return f;
   }
 
@@ -341,7 +379,14 @@
     var nouveau = cadres[service];
     var dejaPret = !!nouveau && nouveau.getAttribute("data-pret") === "true";
 
-    if (!nouveau) nouveau = creerCadre(service);
+    if (!nouveau) {
+      nouveau = creerCadre(service);
+    } else {
+      /* Deja en cache : on le remet en tete de file, sinon le plafond
+         evincerait justement celui qu'on vient de rouvrir. */
+      var pos = ordre.indexOf(service);
+      if (pos !== -1) { ordre.splice(pos, 1); ordre.push(service); }
+    }
 
     Object.keys(cadres).forEach(function (k) {
       cadres[k].setAttribute("data-actif", String(k === service));

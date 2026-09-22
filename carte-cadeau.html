@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -37,7 +38,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Combien coûte une carte cadeau pour un lavage auto ?", "acceptedAnswer": {"@type": "Answer", "text": "Chez Mobile Car Cleaning, la carte cadeau démarre à 49 € pour un lavage extérieur, 89 € pour une formule complète extérieur et intérieur, et 169 € pour un detailing intérieur. Vous pouvez aussi choisir librement le montant, à partir de 30 €."}},
+    {"@type": "Question", "name": "Combien coûte une carte cadeau pour un lavage auto ?", "acceptedAnswer": {"@type": "Answer", "text": "Chez Mobile Car Cleaning, la carte cadeau démarre à 49 € pour un lavage extérieur, 89 € pour une formule complète extérieur et intérieur, et 149 € pour un detailing intérieur sur une citadine. Comptez 59 €, 99 € et 169 € pour une berline, 69 €, 109 € et 189 € pour un SUV. Vous pouvez aussi choisir librement le montant, à partir de 30 €."}},
     {"@type": "Question", "name": "Combien de temps une carte cadeau est-elle valable ?", "acceptedAnswer": {"@type": "Answer", "text": "Douze mois à compter de la date d'achat. La date d'expiration est imprimée sur la carte. Si votre carte arrive à échéance et que vous n'avez pas pu prendre rendez-vous, écrivez-nous : nous la prolongeons."}},
     {"@type": "Question", "name": "Comment recevoir une carte cadeau rapidement ?", "acceptedAnswer": {"@type": "Answer", "text": "Écrivez à bonjour@mobilecarcleaning.fr en indiquant le montant et le prénom de la personne. Vous recevez la carte en PDF par email sous quelques heures, prête à imprimer ou à transférer. C'est possible le jour même, y compris le week-end."}},
     {"@type": "Question", "name": "La carte cadeau est-elle transférable ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. La carte porte un prénom mais n'est pas nominative au sens strict : la personne qui la présente peut en bénéficier, quel que soit le véhicule, dans notre zone d'intervention en Alsace."}},
@@ -94,7 +95,7 @@
 <section class="section section--tight">
   <div class="wrap">
     <div class="prose" style="max-width:74ch">
-      <p class="lede">La carte cadeau Mobile Car Cleaning donne droit à un lavage automobile à domicile en Alsace. Elle démarre à 49 € pour un extérieur, 89 € pour une formule complète et 169 € pour un detailing intérieur, ou au montant libre de votre choix à partir de 30 €. Elle est envoyée en PDF sous quelques heures, valable douze mois, et utilisable à Strasbourg, Mulhouse, Colmar et Saint-Louis.</p>
+      <p class="lede">La carte cadeau Mobile Car Cleaning donne droit à un lavage automobile à domicile en Alsace. Elle démarre à 49 € pour un extérieur, 89 € pour une formule complète et 149 € pour un detailing intérieur — tarifs citadine, ajustables au gabarit du véhicule — ou au montant libre de votre choix à partir de 30 €. Elle est envoyée en PDF sous quelques heures, valable douze mois, et utilisable à Strasbourg, Mulhouse, Colmar et Saint-Louis.</p>
     </div>
   </div>
 </section>
@@ -106,25 +107,31 @@
   <div class="wrap">
     <div class="head">
       <h2>Quel montant offrir ?</h2>
-      <p>Les trois montants correspondent à nos formules pour une citadine. Pour une berline ou un SUV, le bénéficiaire complète la différence sur place — ou vous ajoutez 10 à 20 € au montant.</p>
+      <p>Choisissez le gabarit du véhicule : les montants s'ajustent. Si vous ne savez pas encore quelle voiture sera concernée, le montant libre évite toute mauvaise surprise au moment du rendez-vous.</p>
     </div>
 
-    <div class="gift">
+    <div class="vtype vtype--inline" role="group" aria-label="Type de véhicule" data-scope="#gift-grid" style="margin-bottom:1.75rem">
+      <button type="button" class="vtype__btn" data-vtype="citadine" aria-pressed="true">Citadine</button>
+      <button type="button" class="vtype__btn" data-vtype="berline" aria-pressed="false">Berline</button>
+      <button type="button" class="vtype__btn" data-vtype="suv" aria-pressed="false">SUV</button>
+    </div>
+
+    <div class="gift" id="gift-grid">
       <article class="gift__card">
-        <span class="gift__amount">49 €</span>
+        <span class="gift__amount" data-p-citadine="49" data-p-berline="59" data-p-suv="69">49 €</span>
         <p class="gift__for">Express extérieur</p>
         <p class="gift__note">45 minutes. Carrosserie, jantes, vitres. Le cadeau rapide et utile.</p>
       </article>
 
       <article class="gift__card gift__card--lead">
         <span class="gift__tag">Le plus offert</span>
-        <span class="gift__amount">89 €</span>
+        <span class="gift__amount" data-p-citadine="89" data-p-berline="99" data-p-suv="109">89 €</span>
         <p class="gift__for">Formule complète</p>
         <p class="gift__note">1 h 45, extérieur et intérieur. Le bon volume.</p>
       </article>
 
       <article class="gift__card">
-        <span class="gift__amount">169 €</span>
+        <span class="gift__amount" data-p-citadine="149" data-p-berline="169" data-p-suv="189">149 €</span>
         <p class="gift__for">Detailing intérieur</p>
         <p class="gift__note">Sièges, moquettes, plastiques traités en profondeur. Pour marquer le coup.</p>
       </article>
@@ -147,7 +154,7 @@
     <div class="values">
       <article class="value">
         <h3>1. Vous nous écrivez</h3>
-        <p>Un email à <a href="mailto:bonjour@mobilecarcleaning.fr">bonjour@mobilecarcleaning.fr</a> avec le montant et le prénom de la personne. Un message vocal ou un SMS au 06 23 32 64 82 fonctionne aussi bien.</p>
+        <p>Un email à <a href="mailto:bonjour@mobilecarcleaning.fr">bonjour@mobilecarcleaning.fr</a> avec le montant et le prénom de la personne. Un message vocal ou un SMS au 06 66 89 82 12 fonctionne aussi bien.</p>
       </article>
       <article class="value">
         <h3>2. Vous réglez</h3>
@@ -188,8 +195,8 @@
         <div class="voucher__bot">
           <span>Pour <b>Julien</b></span>
           <span>N° <b>MCC-2026-0042</b></span>
-          <span>Valable jusqu'au <b>21 septembre 2027</b></span>
-          <span>mobilecarcleaning.fr · 06 23 32 64 82</span>
+          <span>Valable <b data-validite="12">douze mois après l'achat</b></span>
+          <span>mobilecarcleaning.fr · 06 66 89 82 12</span>
         </div>
       </div>
     </div>
@@ -232,7 +239,8 @@
     <p class="lede">Écrivez-nous le montant et le prénom, on s'occupe du reste.</p>
     <div class="cta__actions">
       <a class="btn btn--primary" href="mailto:bonjour@mobilecarcleaning.fr?subject=Carte%20cadeau">bonjour@mobilecarcleaning.fr</a>
-      <a class="btn btn--ghost" href="tel:+33623326482">06 23 32 64 82</a>
+      <a class="btn btn--ghost" href="tel:+33666898212">06 66 89 82 12</a>
+      <a class="btn btn--wa" href="https://wa.me/33666898212?text=Bonjour%2C%20je%20souhaite%20offrir%20une%20carte%20cadeau." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.5 8.5 0 0 1 8.5 8.5z"/></svg>WhatsApp</a>
     </div>
   </div>
 </section>
@@ -245,8 +253,13 @@
   <div class="wrap">
     <div class="footer__cols">
       <div class="footer__brand">
-        <img src="assets/logo.png" alt="Mobile Car Cleaning" width="492" height="160">
+        <img src="assets/logo.png" alt="Mobile Car Cleaning" width="492" height="160" loading="lazy" decoding="async">
         <p>Lavage et nettoyage automobile mobile en Alsace. Sur rendez-vous, 7 jours sur 7.</p>
+        <div class="footer__contact">
+          <a class="btn btn--wa btn--sm" href="https://wa.me/33666898212" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.5 8.5 0 0 1 8.5 8.5z"/></svg>WhatsApp</a>
+          <a class="btn btn--ghost btn--sm" href="tel:+33666898212">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>
+        </div>
+        <a class="footer__mail" href="mailto:bonjour@mobilecarcleaning.fr">bonjour@mobilecarcleaning.fr</a>
         <a class="footer__insta" href="https://www.instagram.com/mobilecarcleaning.fr/" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
           <span>Suivez nos dernières réalisations sur Instagram</span>

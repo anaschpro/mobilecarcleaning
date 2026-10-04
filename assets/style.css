@@ -20,6 +20,7 @@
   --brand:#2A2FD1;      /* bleu du logo */
   --brand-lit:#5468FF;  /* bleu vif : boutons, puces */
   --water:#63D9E6;      /* cyan : réservé à l'argument eau */
+  --waste:#FF8A4C;      /* orange : consommation d'une station classique (jauge) */
   --paper:#F2F4FA;      /* texte clair */
   --muted:#98A1BF;      /* texte secondaire */
   --line:rgba(255,255,255,.10);
@@ -262,8 +263,10 @@ p:last-child{margin-bottom:0}
 .bar__value{font-family:Archivo,sans-serif;font-weight:800;font-size:1.5rem;font-variation-settings:"wdth" 112}
 .bar__track{height:15px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden}
 .bar__fill{height:100%;width:0;border-radius:100px;transition:width 1.5s cubic-bezier(.22,.75,.3,1)}
-.bar--them .bar__value{color:var(--muted)}
-.bar--them .bar__fill{background:rgba(255,255,255,.24)}
+.bar--them .bar__name{color:var(--paper)}
+.bar--them .bar__value{color:var(--waste)}
+.bar--them .bar__fill{background:linear-gradient(90deg,#E5484D,var(--waste));
+  box-shadow:0 0 18px rgba(255,138,76,.35)}
 .bar--us .bar__value{color:var(--water)}
 .bar--us .bar__fill{background:linear-gradient(90deg,var(--brand-lit),var(--water));
   box-shadow:0 0 22px rgba(99,217,230,.5)}

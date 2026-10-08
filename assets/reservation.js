@@ -14,11 +14,11 @@
 (function () {
   'use strict';
 
-  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwHoRtkR785AtlnabSkJQBQyV_jsYclTLn51OGnCudAcws5aJbo1418SaXDk4mME-31cQ/exec';
+  var ENDPOINT = '';
   if (window.MCC_ENDPOINT) ENDPOINT = window.MCC_ENDPOINT;
 
   var TELEPHONE = '06 23 32 64 82';
-  var JOURS_AFFICHES = 21;
+  var JOURS_AFFICHES = 60;  // même valeur que HORIZON_DAYS dans Code.gs
 
   var SERVICES = {
     'express-exterieur':   { label: 'Express extérieur',    minutes: 45,  prix: { citadine: 49,  berline: 59,  suv: 69 },
@@ -219,7 +219,7 @@
       if (n && j.date === state.date) garder = true;
     });
     if (!premier) {
-      statut('Aucun créneau libre sur les trois prochaines semaines pour cette formule. Appelez-nous au ' +
+      statut('Aucun créneau libre pour cette formule sur les deux prochains mois. Appelez-nous au ' +
              TELEPHONE + ', on trouve souvent une solution.', 'error');
       state.date = null;
       majBouton();
@@ -298,7 +298,7 @@
 
   /* ---------- Envoi ---------- */
 
-  var champs = ['resa-nom', 'resa-tel', 'resa-email', 'resa-adresse'];
+  var champs = ['resa-nom', 'resa-tel', 'resa-email', 'resa-vehicule', 'resa-adresse'];
 
   function erreur(msg, champ) {
     el.erreur.textContent = msg;
@@ -320,6 +320,8 @@
     if (nom.value.trim().length < 2) return erreur('Indiquez votre nom.', nom), false;
     if (tel.value.replace(/[^\d]/g, '').length < 10) return erreur('Indiquez un numéro de téléphone valide.', tel), false;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) return erreur('Indiquez une adresse email valide.', email), false;
+    var veh = $('resa-vehicule');
+    if (veh.value.trim().length < 2) return erreur('Indiquez le modèle du véhicule.', veh), false;
     if (adr.value.trim().length < 6) return erreur('Indiquez l’adresse où se trouve le véhicule.', adr), false;
     if (!$('resa-consent').checked) return erreur('Cochez la case d’accord pour que nous puissions vous contacter.', $('resa-consent')), false;
     return true;

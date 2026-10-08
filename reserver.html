@@ -30,8 +30,6 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://mobilecarcleaning.setmore.com">
-<link rel="preconnect" href="https://assets.setmore.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <!-- Tous les styles du site sont dans ce fichier unique -->
@@ -76,104 +74,224 @@
   <div class="wrap">
     <p class="crumb"><a href="index.html">Accueil</a> — Réserver</p>
     <h1>Réservez votre créneau</h1>
-    <p class="lede">Choisissez la formule, le jour et l'heure. Sans acompte, annulation libre jusqu'à 24 h avant.</p>
+    <p class="lede">Choisissez la formule, le jour et l'heure : le créneau est confirmé tout de suite. Sans acompte, annulation libre jusqu'à 24 h avant.</p>
   </div>
 </section>
 
 <!-- ============================================================
-     RÉSERVATION — WIDGET SETMORE
-     Relié au compte : mobilecarcleaning.setmore.com
+     RÉSERVATION EN LIGNE
+     Le fonctionnement est dans assets/reservation.js.
+     Les créneaux viennent de l'agenda Google, via Apps Script.
      ============================================================ -->
 <section class="section" id="booking">
   <div class="wrap">
-    <div class="head">
-      <h2>Choisissez votre formule</h2>
-      <p>Le calendrier se met à jour tout seul selon la formule sélectionnée. Si aucun créneau ne vous convient, appelez-nous au 06 66 89 82 12 : on trouve souvent une solution.</p>
-    </div>
 
-    <!-- Sélecteur maison : évite au client de déplier les catégories
-         sur la page Setmore. Chaque data-service correspond à une clé
-         du tableau MCC_SERVICES, en bas de cette page. -->
-    <div class="formules" role="group" aria-label="Formule à réserver">
+    <form class="resa" id="resa" novalidate>
 
-      <label class="pick" data-service="express-exterieur">
-        <input type="radio" name="formule" value="express-exterieur">
-        <span class="pick__row">
-          <span class="pick__name">Express extérieur<small class="pick__meta">45 minutes</small></span>
-          <span class="tile-price">49 €</span>
-        </span>
-      </label>
+      <!-- Étape 1 : formule et véhicule -->
+      <div class="resa__step" role="group" aria-labelledby="resa-t1">
+        <div class="resa__step-head">
+          <span class="resa__num" aria-hidden="true"></span>
+          <h2 id="resa-t1">La formule et le véhicule</h2>
+        </div>
+        <div class="vtype resa__vtype" id="resa-vtype" role="group" aria-label="Type de véhicule">
+          <button type="button" class="vtype__btn" data-vtype="citadine" aria-pressed="true">Citadine</button>
+          <button type="button" class="vtype__btn" data-vtype="berline" aria-pressed="false">Berline</button>
+          <button type="button" class="vtype__btn" data-vtype="suv" aria-pressed="false">SUV / Utilitaire</button>
+        </div>
 
-      <label class="pick" data-service="interieur">
-        <input type="radio" name="formule" value="interieur">
-        <span class="pick__row">
-          <span class="pick__name">Intérieur<small class="pick__meta">1 heure</small></span>
-          <span class="tile-price">49 €</span>
-        </span>
-      </label>
-
-      <label class="pick" data-service="complet">
-        <input type="radio" name="formule" value="complet" checked>
-        <span class="pick__row">
-          <span class="pick__name">Complet<small class="pick__meta">1 h 45 — le plus choisi</small></span>
-          <span class="tile-price">89 €</span>
-        </span>
-      </label>
-
-      <label class="pick" data-service="complet-protection">
-        <input type="radio" name="formule" value="complet-protection">
-        <span class="pick__row">
-          <span class="pick__name">Complet + protection<small class="pick__meta">2 h 30</small></span>
-          <span class="tile-price">129 €</span>
-        </span>
-      </label>
-
-      <label class="pick" data-service="detailing-interieur">
-        <input type="radio" name="formule" value="detailing-interieur">
-        <span class="pick__row">
-          <span class="pick__name">Detailing intérieur<small class="pick__meta">3 heures</small></span>
-          <span class="tile-price">129 €</span>
-        </span>
-      </label>
-
-      <label class="pick" data-service="phares">
-        <input type="radio" name="formule" value="phares">
-        <span class="pick__row">
-          <span class="pick__name">Rénovation des phares<small class="pick__meta">En complément d'une formule</small></span>
-          <span class="tile-price">59 €</span>
-        </span>
-      </label>
-
-      <label class="pick pick--devis" data-service="devis">
-        <input type="radio" name="formule" value="devis">
-        <span class="pick__row">
-          <span class="pick__name">Devis / appel conseil<small class="pick__meta">Polissage, restitution de leasing, flotte</small></span>
-          <span class="tile-price">Gratuit</span>
-        </span>
-      </label>
-
-    </div>
-    <p class="formules__note">Prix indiqués pour une citadine. Un supplément s'applique selon le gabarit du véhicule, confirmé avant l'intervention.</p>
-
-    <div class="booking__frame">
-      <div id="mcc-booking"></div>
-      <div class="booking__loading" id="mcc-loading" aria-live="polite">
-        <span class="booking__spinner" aria-hidden="true"></span>
-        Chargement du calendrier…
+        <div class="formules" id="resa-formules" role="radiogroup" aria-label="Formule à réserver">
+          <label class="pick" data-service="express-exterieur" data-p-citadine="49" data-p-berline="59" data-p-suv="69">
+            <input type="radio" name="formule" value="express-exterieur">
+            <span class="pick__row">
+              <span class="pick__name">Express extérieur<small class="pick__meta">45 minutes</small></span>
+              <span class="tile-price">49 €</span>
+            </span>
+          </label>
+          <label class="pick" data-service="interieur" data-p-citadine="49" data-p-berline="59" data-p-suv="69">
+            <input type="radio" name="formule" value="interieur">
+            <span class="pick__row">
+              <span class="pick__name">Intérieur<small class="pick__meta">1 heure</small></span>
+              <span class="tile-price">49 €</span>
+            </span>
+          </label>
+          <label class="pick" data-service="complet" data-p-citadine="89" data-p-berline="99" data-p-suv="109">
+            <input type="radio" name="formule" value="complet" checked>
+            <span class="pick__row">
+              <span class="pick__name">Complet<small class="pick__meta">1 h 45, le plus choisi</small></span>
+              <span class="tile-price">89 €</span>
+            </span>
+          </label>
+          <label class="pick" data-service="complet-protection" data-p-citadine="129" data-p-berline="145" data-p-suv="165">
+            <input type="radio" name="formule" value="complet-protection">
+            <span class="pick__row">
+              <span class="pick__name">Complet + protection<small class="pick__meta">2 h 30</small></span>
+              <span class="tile-price">129 €</span>
+            </span>
+          </label>
+          <label class="pick" data-service="detailing-interieur" data-p-citadine="129" data-p-berline="139" data-p-suv="149">
+            <input type="radio" name="formule" value="detailing-interieur">
+            <span class="pick__row">
+              <span class="pick__name">Detailing intérieur<small class="pick__meta">3 heures</small></span>
+              <span class="tile-price">129 €</span>
+            </span>
+          </label>
+          <label class="pick" data-service="phares" data-p-citadine="59" data-p-berline="59" data-p-suv="59">
+            <input type="radio" name="formule" value="phares">
+            <span class="pick__row">
+              <span class="pick__name">Rénovation des phares<small class="pick__meta">30 minutes, la paire</small></span>
+              <span class="tile-price">59 €</span>
+            </span>
+          </label>
+          <label class="pick pick--devis" data-service="devis">
+            <input type="radio" name="formule" value="devis">
+            <span class="pick__row">
+              <span class="pick__name">Devis ou conseil<small class="pick__meta">Polissage, restitution de leasing, flotte</small></span>
+              <span class="tile-price">Gratuit</span>
+            </span>
+          </label>
+        </div>
       </div>
-      <p class="booking__fallback booking__fallback--sur" id="mcc-secours" role="status" hidden>Le calendrier met trop de temps à répondre.
-        <a href="https://mobilecarcleaning.setmore.com" target="_blank" rel="noopener">Ouvrir la page de réservation</a>,
-        ou appelez-nous au <a href="tel:+33666898212">06 66 89 82 12</a>.</p>
-      <noscript>
-        <p class="booking__fallback">Le calendrier a besoin de JavaScript pour s'afficher.
-          <a href="https://mobilecarcleaning.setmore.com">Ouvrir la page de réservation</a>,
-          ou appelez-nous au 06 66 89 82 12.</p>
-      </noscript>
+
+      <!-- Panneau affiché pour « Devis ou conseil » -->
+      <div class="resa__panel" id="resa-devis" hidden>
+        <h3>Parlons de votre véhicule</h3>
+        <p>Pour un polissage, une restitution de leasing ou plusieurs véhicules, on établit un devis précis. Envoyez trois ou quatre photos, réponse sous 24 h.</p>
+        <p class="resa__panel-actions">
+          <a class="btn btn--wa" href="https://wa.me/33623326482?text=Bonjour%2C%20je%20souhaite%20un%20devis." target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--ghost" href="tel:+33623326482">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>
+          <a class="btn btn--ghost" href="mailto:bonjour@mobilecarcleaning.fr?subject=Demande%20de%20devis">bonjour@mobilecarcleaning.fr</a>
+        </p>
+      </div>
+
+      <!-- Affiché tant que l'adresse Apps Script n'est pas renseignée -->
+      <div class="resa__panel" id="resa-off" hidden>
+        <h3>Réservation par téléphone ou WhatsApp</h3>
+        <p>La réservation en ligne arrive très vite. En attendant, on cale votre créneau en deux minutes.</p>
+        <p class="resa__panel-actions">
+          <a class="btn btn--wa" href="https://wa.me/33623326482?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20cr%C3%A9neau." target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--ghost" href="tel:+33623326482">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>
+        </p>
+      </div>
+
+      <div id="resa-steps" class="resa__steps" hidden>
+
+        <!-- Étape 2 : options -->
+        <div class="resa__step" id="resa-step-options" role="group" aria-labelledby="resa-t2">
+          <div class="resa__step-head">
+            <span class="resa__num" aria-hidden="true"></span>
+            <h2 id="resa-t2">Les options</h2>
+            <p class="resa__hint">Facultatif</p>
+          </div>
+          <div class="options__grid" id="resa-options">
+            <label class="pick" data-option="tres-sale">
+              <input type="checkbox" value="tres-sale">
+              <span class="pick__row"><span class="pick__name">Véhicule très sale<small class="pick__meta">Boue, sable, ou dernier lavage il y a plus de 3 mois</small></span><span class="tile-price">+15 €</span></span>
+            </label>
+            <label class="pick" data-option="ozone">
+              <input type="checkbox" value="ozone">
+              <span class="pick__row"><span class="pick__name">Anti-odeur à l'ozone<small class="pick__meta">Tabac, animaux, humidité</small></span><span class="tile-price">+29 €</span></span>
+            </label>
+            <label class="pick" data-option="poils">
+              <input type="checkbox" value="poils">
+              <span class="pick__row"><span class="pick__name">Poils d'animaux</span><span class="tile-price">+20 €</span></span>
+            </label>
+            <label class="pick" data-option="cuir">
+              <input type="checkbox" value="cuir">
+              <span class="pick__row"><span class="pick__name">Sièges cuir<small class="pick__meta">Nettoyage et soin</small></span><span class="tile-price">+30 €</span></span>
+            </label>
+            <label class="pick" data-option="moteur">
+              <input type="checkbox" value="moteur">
+              <span class="pick__row"><span class="pick__name">Compartiment moteur</span><span class="tile-price">+30 €</span></span>
+            </label>
+            <label class="pick" data-option="phares">
+              <input type="checkbox" value="phares">
+              <span class="pick__row"><span class="pick__name">Rénovation des phares<small class="pick__meta">La paire</small></span><span class="tile-price">+59 €</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="resa__total" aria-live="polite">
+          <span>Total <strong id="resa-prix">89 €</strong></span>
+          <span>Durée prévue <strong class="resa__total-duree" id="resa-duree">1 h 45</strong></span>
+          <span class="resa__total-note">Déplacement offert jusqu'à 15 km</span>
+        </div>
+
+        <!-- Étape 3 : jour et heure -->
+        <div class="resa__step" id="resa-step-creneau" role="group" aria-labelledby="resa-t3">
+          <div class="resa__step-head">
+            <span class="resa__num" aria-hidden="true"></span>
+            <h2 id="resa-t3">Le jour et l'heure</h2>
+          </div>
+          <div class="resa__days" id="resa-days"></div>
+          <p class="resa__status" id="resa-status" role="status" hidden></p>
+          <div class="resa__slots" id="resa-slots"></div>
+        </div>
+
+        <!-- Étape 4 : coordonnées -->
+        <div class="resa__step" role="group" aria-labelledby="resa-t4">
+          <div class="resa__step-head">
+            <span class="resa__num" aria-hidden="true"></span>
+            <h2 id="resa-t4">Vos coordonnées</h2>
+          </div>
+          <div class="resa__fields">
+            <div class="resa__field">
+              <label for="resa-nom">Nom et prénom</label>
+              <input type="text" id="resa-nom" name="nom" autocomplete="name" required>
+            </div>
+            <div class="resa__field">
+              <label for="resa-tel">Téléphone</label>
+              <input type="tel" id="resa-tel" name="tel" autocomplete="tel" inputmode="tel" required>
+            </div>
+            <div class="resa__field">
+              <label for="resa-email">Email <small>pour la confirmation</small></label>
+              <input type="email" id="resa-email" name="email" autocomplete="email" required>
+            </div>
+            <div class="resa__field">
+              <label for="resa-vehicule">Véhicule <small>modèle et couleur, facultatif</small></label>
+              <input type="text" id="resa-vehicule" name="vehicule" placeholder="Ex. Peugeot 308 grise">
+            </div>
+            <div class="resa__field resa__field--full">
+              <label for="resa-adresse">Adresse où se trouve le véhicule</label>
+              <input type="text" id="resa-adresse" name="adresse" autocomplete="street-address" placeholder="Numéro, rue, code postal, ville" required>
+            </div>
+            <div class="resa__field resa__field--full">
+              <label for="resa-message">Précisions <small>code d'accès, étage du parking, état du véhicule, facultatif</small></label>
+              <textarea id="resa-message" name="message" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="resa__hp" aria-hidden="true">
+            <label for="resa-website">Ne pas remplir</label>
+            <input type="text" id="resa-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="resa__checks">
+            <label class="resa__check"><input type="checkbox" id="resa-abonne"><span>Je suis abonné(e) à Mobile Car Cleaning</span></label>
+            <label class="resa__check"><input type="checkbox" id="resa-consent" required><span>J'accepte que mes coordonnées servent uniquement à organiser ce rendez-vous. <a href="confidentialite.html">En savoir plus</a></span></label>
+          </div>
+
+          <div class="resa__submit">
+            <p class="resa__erreur" id="resa-erreur" role="alert" hidden></p>
+            <button type="submit" class="btn btn--primary" id="resa-submit">Choisissez un jour et une heure</button>
+            <p class="resa__recap" id="resa-recap">Sans acompte. Paiement sur place, par carte ou espèces.</p>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Confirmation -->
+    <div class="resa__ok" id="resa-ok" tabindex="-1" hidden>
+      <h2>C'est réservé.</h2>
+      <p>Un email de confirmation vient de partir à <strong id="resa-ok-email"></strong>. Pensez à regarder dans les indésirables.</p>
+      <dl id="resa-ok-details"></dl>
+      <p>Pour déplacer ou annuler, répondez à cet email ou appelez le 06&nbsp;66&nbsp;89&nbsp;82&nbsp;12, au plus tard 24 h avant.</p>
+      <button type="button" class="btn btn--ghost" id="resa-encore">Réserver pour un autre véhicule</button>
     </div>
-    <p class="booking__aide">Le calendrier ne s'affiche pas&nbsp;?
-      <a href="https://mobilecarcleaning.setmore.com" target="_blank" rel="noopener">Ouvrir la page de réservation</a>,
-      nous écrire sur <a href="https://wa.me/33666898212?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20cr%C3%A9neau." target="_blank" rel="noopener">WhatsApp</a>
-      ou appeler le <a href="tel:+33666898212">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>.</p>
+
+    <p class="booking__aide">Un souci pour réserver&nbsp;? Écrivez-nous sur
+      <a href="https://wa.me/33623326482?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20cr%C3%A9neau." target="_blank" rel="noopener">WhatsApp</a>
+      ou appelez le <a href="tel:+33623326482">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>.</p>
   </div>
 </section>
 
@@ -187,9 +305,9 @@
       <details><summary>Que dois-je préparer ?</summary>
         <p>Rien. Laissez simplement environ un mètre de dégagement autour du véhicule. Nous n'avons besoin ni de votre eau ni d'un raccordement.</p></details>
       <details><summary>Et si je dois annuler ?</summary>
-        <p>Annulation ou report libre jusqu'à 24 h avant le rendez-vous, depuis le lien reçu dans l'email de confirmation. Aucun acompte n'est demandé à la réservation.</p></details>
+        <p>Annulation ou report libre jusqu'à 24 h avant le rendez-vous : répondez simplement à l'email de confirmation ou appelez-nous. Aucun acompte n'est demandé à la réservation.</p></details>
       <details><summary>Je préfère réserver par téléphone</summary>
-        <p>Aucun problème. Appelez-nous au 06 66 89 82 12, on cale le créneau ensemble.</p></details>
+        <p>Aucun problème. Appelez-nous au 06 23 32 64 82, on cale le créneau ensemble.</p></details>
     </div>
   </div>
 </section>
@@ -205,8 +323,8 @@
         <img src="assets/logo.png" alt="Mobile Car Cleaning" width="492" height="160" loading="lazy" decoding="async">
         <p>Lavage et nettoyage automobile mobile en Alsace. Sur rendez-vous, 7 jours sur 7.</p>
         <div class="footer__contact">
-          <a class="btn btn--wa btn--sm" href="https://wa.me/33666898212" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.5 8.5 0 0 1 8.5 8.5z"/></svg>WhatsApp</a>
-          <a class="btn btn--ghost btn--sm" href="tel:+33666898212">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>
+          <a class="btn btn--wa btn--sm" href="https://wa.me/33623326482" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.5 8.5 0 0 1 8.5 8.5z"/></svg>WhatsApp</a>
+          <a class="btn btn--ghost btn--sm" href="tel:+33623326482">06&nbsp;66&nbsp;89&nbsp;82&nbsp;12</a>
         </div>
         <a class="footer__mail" href="mailto:bonjour@mobilecarcleaning.fr">bonjour@mobilecarcleaning.fr</a>
         <a class="footer__insta" href="https://www.instagram.com/mobilecarcleaning.fr/" target="_blank" rel="noopener">
@@ -257,169 +375,7 @@
 </footer>
 
 <script src="assets/main.js"></script>
-<!-- ============================================================
-     WIDGET SETMORE — début
-     Compte relié : mobilecarcleaning.setmore.com
-
-     POUR MODIFIER UN FORFAIT : ne touchez QUE le tableau
-     MCC_SERVICES ci-dessous. À gauche le nom court utilisé dans
-     l'adresse (reserver.html?f=complet), à droite l'identifiant
-     du service, obtenu via « Copy link » en face du service
-     dans Setmore. Le même nom court doit figurer dans l'attribut
-     data-cal du sélecteur de formule, sur la page d'accueil.
-     ============================================================ -->
-<script type="text/javascript">
-(function () {
-  var BASE = "https://mobilecarcleaning.setmore.com";
-
-  var MCC_SERVICES = {
-    "express-exterieur":   "d62fc749-60e6-4616-a29a-9d372474ea57",
-    "interieur":           "dc555949-2bba-4310-8c97-493a85b34cb8",
-    "complet":             "13bc8378-a60d-4024-834c-fb4b56326f09",
-    "complet-protection":  "fe2b066a-e722-4699-9410-e3f3910ab2f4",
-    "detailing-interieur": "df2ae609-bc96-4560-8215-522bff6660c3",
-    "phares":              "cb7e8854-6e53-46f2-b5ec-0bbe243dc932",
-    "devis":               "30ef739d-a2ef-47b8-8ab5-bc9adf8b55fb"
-  };
-
-  /* Réglages d'affichage de l'indicateur de chargement.
-     Setmore est une application JavaScript : son événement "load"
-     se déclenche bien AVANT que le calendrier soit dessiné à
-     l'écran. Impossible de savoir depuis notre page quand il est
-     réellement prêt (sécurité navigateur : on ne peut pas lire
-     l'intérieur d'un cadre hébergé sur un autre domaine). On garde
-     donc l'indicateur un moment après le "load". Si l'attente vous
-     paraît mal calibrée, ce sont les deux nombres ci-dessous. */
-  var APRES_CHARGEMENT = 1800;  /* millisecondes gardées après le "load" */
-  var SECURITE         = 15000; /* filet : on n'attend jamais au-delà */
-
-  var choix = "";
-  try { choix = new URLSearchParams(location.search).get("f") || ""; } catch (e) {}
-  if (!Object.prototype.hasOwnProperty.call(MCC_SERVICES, choix)) choix = "complet";
-
-  var emplacement = document.getElementById("mcc-booking");
-  var chargement  = document.getElementById("mcc-loading");
-  var secours     = document.getElementById("mcc-secours");
-  var cartes      = [].slice.call(document.querySelectorAll(".formules .pick"));
-  if (!emplacement) return;
-
-  /* Un calendrier déjà chargé est conservé et simplement masqué :
-     revenir sur une formule déjà consultée est alors instantané,
-     au lieu de relancer Setmore depuis zéro à chaque clic. */
-  var cadres = {};
-  var ordre = [];
-  var MAX_CADRES = 3;
-  var minuteries = [];
-
-  function stopMinuteries() {
-    minuteries.forEach(clearTimeout);
-    minuteries = [];
-  }
-
-  function masquerIndicateur() {
-    stopMinuteries();
-    if (chargement) chargement.setAttribute("data-visible", "false");
-    if (secours) secours.hidden = true;
-  }
-
-  /* Au bout de SECURITE, on ne laisse PAS un cadre blanc muet :
-     on propose la page Setmore et le téléphone. */
-  function echecChargement() {
-    stopMinuteries();
-    if (chargement) chargement.setAttribute("data-visible", "false");
-    if (secours) secours.hidden = false;
-  }
-
-  function montrerIndicateur() {
-    stopMinuteries();
-    if (secours) secours.hidden = true;
-    if (chargement) chargement.setAttribute("data-visible", "true");
-    minuteries.push(setTimeout(echecChargement, SECURITE));
-  }
-
-  function creerCadre(service) {
-    var f = document.createElement("iframe");
-    f.className = "mcc-booking-frame";
-    f.title = "Calendrier de réservation — " + service;
-    f.setAttribute("scrolling", "yes");
-    f.setAttribute("frameborder", "0");
-    f.setAttribute("allow", "web-share");
-    f.setAttribute("data-pret", "false");
-
-    f.addEventListener("load", function () {
-      /* On laisse à Setmore le temps de dessiner son calendrier
-         avant de retirer l'indicateur. */
-      stopMinuteries();
-      minuteries.push(setTimeout(function () {
-        f.setAttribute("data-pret", "true");
-        if (f.getAttribute("data-actif") === "true") masquerIndicateur();
-      }, APRES_CHARGEMENT));
-    });
-
-    f.src = BASE + "/services/" + MCC_SERVICES[service];
-    emplacement.appendChild(f);
-    cadres[service] = f;
-    ordre.push(service);
-
-    /* On garde les trois derniers calendriers en mémoire : revenir sur
-       une formule reste instantané, sans faire tourner sept calendriers
-       en parallèle sur un téléphone. */
-    while (ordre.length > MAX_CADRES) {
-      var vieux = ordre.shift();
-      if (vieux !== service && cadres[vieux]) {
-        cadres[vieux].parentNode.removeChild(cadres[vieux]);
-        delete cadres[vieux];
-      }
-    }
-    return f;
-  }
-
-  function afficher(service) {
-    var nouveau = cadres[service];
-    var dejaPret = !!nouveau && nouveau.getAttribute("data-pret") === "true";
-
-    if (!nouveau) {
-      nouveau = creerCadre(service);
-    } else {
-      /* Deja en cache : on le remet en tete de file, sinon le plafond
-         evincerait justement celui qu'on vient de rouvrir. */
-      var pos = ordre.indexOf(service);
-      if (pos !== -1) { ordre.splice(pos, 1); ordre.push(service); }
-    }
-
-    Object.keys(cadres).forEach(function (k) {
-      cadres[k].setAttribute("data-actif", String(k === service));
-    });
-
-    /* Calendrier déjà chargé : affichage immédiat, aucun indicateur. */
-    if (dejaPret) masquerIndicateur(); else montrerIndicateur();
-
-    cartes.forEach(function (c) {
-      var actif = c.getAttribute("data-service") === service;
-      c.setAttribute("data-checked", String(actif));
-      var radio = c.querySelector("input");
-      if (radio) radio.checked = actif;
-    });
-
-    /* L'adresse reste partageable : un lien copié rouvre la bonne formule. */
-    try {
-      history.replaceState(null, "", "reserver.html?f=" + service);
-    } catch (e) {}
-  }
-
-  cartes.forEach(function (c) {
-    var radio = c.querySelector("input");
-    if (radio) {
-      radio.addEventListener("change", function () {
-        afficher(c.getAttribute("data-service"));
-      });
-    }
-  });
-
-  afficher(choix);
-})();
-</script>
-<!-- WIDGET SETMORE — fin -->
+<script src="assets/reservation.js"></script>
 
 </body>
 </html>

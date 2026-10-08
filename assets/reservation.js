@@ -14,7 +14,7 @@
 (function () {
   'use strict';
 
-  var ENDPOINT = '';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwHoRtkR785AtlnabSkJQBQyV_jsYclTLn51OGnCudAcws5aJbo1418SaXDk4mME-31cQ/exec';
   if (window.MCC_ENDPOINT) ENDPOINT = window.MCC_ENDPOINT;
 
   var TELEPHONE = '06 23 32 64 82';
